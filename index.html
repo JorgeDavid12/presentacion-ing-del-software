@@ -1,0 +1,1016 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administración de la Calidad del Software</title>
+  <meta name="description" content="Presentación web universitaria sobre Administración de la Calidad del Software.">
+
+  <!-- Reveal.js, Mermaid, Font Awesome y fuentes externas. Abrir index.html localmente es suficiente. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="tech-canvas" aria-hidden="true"></canvas>
+  <div class="grid-overlay" aria-hidden="true"></div>
+  <div class="scanline" aria-hidden="true"></div>
+
+  <div class="floating-code" aria-hidden="true">
+    <span>if (quality) deploy();</span>
+    <span>QA.pipeline.run()</span>
+    <span>latency &lt; 100ms</span>
+    <span>secure.by.design()</span>
+    <span>tests.pass === true</span>
+    <span>PDCA.iterate()</span>
+  </div>
+
+  <div class="reveal">
+    <div class="slides">
+      <!-- ========================= PORTADA ========================= -->
+      <section class="hero-slide" data-transition="zoom-in fade-out" data-auto-animate>
+        <div class="kicker">Ingeniería de Software</div>
+        <h1>Administración de la Calidad del Software</h1>
+        <p class="subtitle">Definición, QA, Gestión, Control y Factores de Calidad</p>
+        <div class="team-grid" aria-label="Integrantes">
+          <span><i class="fa-solid fa-user-astronaut"></i> Marvin</span>
+          <span><i class="fa-solid fa-code"></i> Francisco</span>
+          <span><i class="fa-solid fa-chart-line"></i> Luis</span>
+          <span><i class="fa-solid fa-shield-halved"></i> David</span>
+        </div>
+        <div class="hero-orbit" aria-hidden="true">
+          <div class="orbit-ring ring-one"></div>
+          <div class="orbit-ring ring-two"></div>
+          <div class="orbit-core"><i class="fa-solid fa-cubes"></i></div>
+        </div>
+        <aside class="notes">
+          Abrir con una frase corta: el software ya no es solo una herramienta, es infraestructura crítica. Presentar el tema y a los cuatro integrantes.
+        </aside>
+      </section>
+
+      <section class="intro-impact" data-transition="slide" data-auto-animate>
+        <div class="section-label">Slide 1 - Introducción general</div>
+        <h2>¿Por qué importa la calidad del software?</h2>
+        <p class="lead">Porque hoy el software mueve dinero, transporte, salud, entretenimiento y decisiones humanas en tiempo real.</p>
+        <div class="impact-grid">
+          <article class="stat-card fragment">
+            <i class="fa-solid fa-building-columns"></i>
+            <strong>24/7</strong>
+            <span>Banca digital sin pausa</span>
+          </article>
+          <article class="stat-card fragment">
+            <i class="fa-solid fa-play"></i>
+            <strong>Streaming</strong>
+            <span>Netflix depende de disponibilidad</span>
+          </article>
+          <article class="stat-card fragment">
+            <i class="fa-solid fa-car-side"></i>
+            <strong>Autonomía</strong>
+            <span>Tesla combina hardware y software</span>
+          </article>
+          <article class="stat-card fragment">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <strong>Vida</strong>
+            <span>Hospitales requieren confiabilidad</span>
+          </article>
+          <article class="stat-card fragment">
+            <i class="fa-solid fa-gamepad"></i>
+            <strong>Experiencia</strong>
+            <span>Videojuegos fallan si rompen inmersión</span>
+          </article>
+        </div>
+        <blockquote class="signal-quote fragment">La calidad no se agrega al final, se construye desde el inicio.</blockquote>
+        <aside class="notes">
+          Enfatizar que calidad no significa solo que el sistema funcione. También significa confianza, continuidad, seguridad, velocidad y experiencia.
+        </aside>
+      </section>
+
+      <section class="cinema-slide" data-transition="convex">
+        <div class="section-label">Mapa de exposición - 2 horas</div>
+        <h2>Ruta de la keynote</h2>
+        <div class="timeline four">
+          <div class="timeline-item fragment">
+            <span class="time">30 min</span>
+            <strong>Marvin</strong>
+            <p>Definición y administración de calidad.</p>
+          </div>
+          <div class="timeline-item fragment">
+            <span class="time">30 min</span>
+            <strong>Francisco</strong>
+            <p>Aseguramiento de calidad y pruebas.</p>
+          </div>
+          <div class="timeline-item fragment">
+            <span class="time">30 min</span>
+            <strong>Luis</strong>
+            <p>Gestión, métricas y mejora continua.</p>
+          </div>
+          <div class="timeline-item fragment">
+            <span class="time">30 min</span>
+            <strong>David</strong>
+            <p>Control y factores de calidad.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          Explicar que la presentación está pensada como una historia: entender la calidad, prevenir defectos, gestionarla y controlarla.
+        </aside>
+      </section>
+
+      <!-- ========================= BLOQUE 1 - MARVIN ========================= -->
+      <section class="section-title marvin" data-transition="zoom">
+        <div class="speaker-chip"><i class="fa-solid fa-user-astronaut"></i> Bloque 1 - Marvin</div>
+        <h2>Definición y Administración de la Calidad del Software</h2>
+        <p class="lead">Un software de calidad no solo abre: funciona bien, protege información y genera confianza.</p>
+        <aside class="notes">
+          Marvin abre con ejemplos cotidianos: WhatsApp, TikTok, Netflix, bancos, videojuegos y plataformas educativas. Pregunta sugerida: "¿Qué pasaría si mañana WhatsApp borrara todos nuestros mensajes, fotos y conversaciones?" La idea es mostrar que la calidad del software importa porque dependemos del software para comunicarnos, comprar, estudiar, trabajar, guardar información y tomar decisiones.
+        </aside>
+      </section>
+
+      <section data-transition="slide">
+        <div class="section-label">Marvin</div>
+        <h2>¿Qué es la calidad del software?</h2>
+        <p class="lead">La calidad no es solo que una app abra, sino que funcione correctamente y genere confianza.</p>
+        <div class="feature-cards">
+          <article class="feature-card fragment"><i class="fa-solid fa-mobile-screen-button"></i><h3>Software diario</h3><p>Lo usamos para comunicarnos, comprar, estudiar y trabajar.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-handshake"></i><h3>Confianza</h3><p>El usuario espera que el sistema no pierda datos ni falle.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-shield-halved"></i><h3>Seguridad</h3><p>Protege contraseñas, pagos y datos personales.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-circle-check"></i><h3>Buen funcionamiento</h3><p>Hace lo que promete en condiciones reales.</p></article>
+        </div>
+        <aside class="notes">
+          Presentar el tema con apps que todos usan. Decir: "Un programa no es de calidad solo porque abre o porque muestra una pantalla. Un software de calidad debe funcionar bien, responder rápido, proteger la información y generar confianza en el usuario." Conectar con la pregunta de WhatsApp para aterrizar el impacto en la vida diaria.
+        </aside>
+      </section>
+
+      <section data-transition="fade">
+        <div class="section-label">Marvin</div>
+        <h2>Definición técnica</h2>
+        <div class="split-layout">
+          <div>
+            <p class="lead">La calidad del software es el grado en que un sistema cumple requisitos, necesidades del usuario, seguridad, eficiencia y confiabilidad.</p>
+            <ul class="clean-list">
+              <li class="fragment"><i class="fa-solid fa-list-check"></i> Requisitos.</li>
+              <li class="fragment"><i class="fa-solid fa-user-check"></i> Necesidades del usuario.</li>
+              <li class="fragment"><i class="fa-solid fa-lock"></i> Seguridad.</li>
+              <li class="fragment"><i class="fa-solid fa-gauge-high"></i> Eficiencia.</li>
+              <li class="fragment"><i class="fa-solid fa-heart-circle-check"></i> Confiabilidad.</li>
+            </ul>
+          </div>
+          <div class="glass-panel fragment">
+            <div class="quality-equation">
+              <span>Correcto</span>
+              <i class="fa-solid fa-plus"></i>
+              <span>Seguro</span>
+              <i class="fa-solid fa-plus"></i>
+              <span>Confiable</span>
+              <i class="fa-solid fa-equals"></i>
+              <strong>Calidad</strong>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">
+          Explicar con palabras sencillas: no se trata únicamente de que el programa esté terminado, sino de que haga lo que debe hacer de una forma adecuada para el usuario. Usar el ejemplo de la app bancaria: si promete transferir Q100, debe transferir exactamente Q100, no duplicar la operación, no mandar una cantidad incorrecta y no perder el registro. Frase clave: "Calidad significa que el software cumple su propósito de forma correcta, segura, eficiente y confiable."
+        </aside>
+      </section>
+
+      <section data-transition="convex">
+        <div class="section-label">Marvin</div>
+        <h2>Características principales</h2>
+        <div class="feature-cards">
+          <article class="feature-card fragment"><i class="fa-solid fa-check-double"></i><h3>Correcto</h3><p>Hace lo que se espera sin alterar datos ni procesos.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-bolt"></i><h3>Rápido</h3><p>Responde en un tiempo aceptable.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-shield-halved"></i><h3>Seguro</h3><p>Protege pagos, permisos y datos personales.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-hand-pointer"></i><h3>Fácil de usar</h3><p>El usuario entiende cómo usarlo sin confundirse.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-heart-circle-check"></i><h3>Confiable</h3><p>Falla poco y se recupera mejor ante problemas.</p></article>
+        </div>
+        <aside class="notes">
+          Explicar cada característica con ejemplos cortos: una tienda en línea debe registrar producto, cantidad, precio, usuario y estado del pedido sin errores; una app lenta puede hacer que el usuario la abandone; una app insegura puede provocar robo de información; una app difícil de usar pierde calidad aunque tenga muchas funciones. Frase: "Un software de calidad no solo funciona; funciona bien para el usuario."
+        </aside>
+      </section>
+
+      <section data-transition="slide">
+        <div class="section-label">Marvin</div>
+        <h2>Analogía del automóvil</h2>
+        <div class="compare-grid">
+          <article class="compare-card good fragment">
+            <div class="car-visual electric" aria-hidden="true">
+              <i class="fa-solid fa-car-side"></i>
+              <span class="road"></span>
+            </div>
+            <h3>Auto de calidad</h3>
+            <ul>
+              <li>No solo enciende.</li>
+              <li>Es seguro y cómodo.</li>
+              <li>Responde bien.</li>
+              <li>Falla poco.</li>
+            </ul>
+          </article>
+          <article class="compare-card bad fragment">
+            <div class="car-visual broken" aria-hidden="true">
+              <i class="fa-solid fa-car-burst"></i>
+              <span class="road"></span>
+            </div>
+            <h3>Software sin calidad</h3>
+            <ul>
+              <li>Abre, pero se congela.</li>
+              <li>Pierde datos.</li>
+              <li>Tiene pantallas confusas.</li>
+              <li>No protege información.</li>
+            </ul>
+          </article>
+        </div>
+        <aside class="notes">
+          Decir: "Un carro de calidad no es solamente un carro que enciende. También debe ser seguro, cómodo, ahorrar combustible, responder bien y no descomponerse cada semana." Comparar dos carros: uno enciende pero fallan los frenos, gasta demasiado y se apaga; otro enciende, frena bien, es cómodo y casi no falla. En software pasa igual: una app puede abrir, pero si se congela, pierde datos o no protege información, no es de calidad.
+        </aside>
+      </section>
+
+      <section data-transition="fade">
+        <div class="section-label">Marvin</div>
+        <h2>Ejemplo Netflix</h2>
+        <div class="split-layout">
+          <div class="device-frame fragment">
+            <div class="screen-top"></div>
+            <div class="stream-grid">
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="loading-bar"><span></span></div>
+          </div>
+          <div>
+            <p class="lead">Una falla en una plataforma masiva afecta usuarios, dinero y reputación.</p>
+            <div class="metric-stack">
+              <div class="metric-row fragment"><span>Millones de usuarios</span><strong>Escala</strong></div>
+              <div class="metric-row fragment"><span>Estabilidad y rapidez</span><strong>Clave</strong></div>
+              <div class="metric-row fragment"><span>Disponibilidad</span><strong>Confianza</strong></div>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">
+          Explicar que Netflix debe funcionar para millones de usuarios al mismo tiempo, especialmente por la noche, fines de semana o estrenos populares. Decir: "Si Netflix se congelara cada cinco minutos, si no cargara las películas o si mostrara errores constantemente, los usuarios no pensarían que es un pequeño detalle técnico. Pensarían que el servicio es malo." Frase fuerte: "Un software con errores puede costar dinero, usuarios y reputación." Preguntar: "¿Cuánto tiempo esperarían ustedes antes de cerrar una aplicación si se queda congelada?"
+        </aside>
+      </section>
+
+      <section data-transition="convex">
+        <div class="section-label">Marvin</div>
+        <h2>Importancia de la calidad</h2>
+        <div class="dashboard-grid">
+          <article class="dash-card fragment"><i class="fa-solid fa-face-smile"></i><span>Experiencia</span><strong>Usuarios satisfechos</strong></article>
+          <article class="dash-card fragment"><i class="fa-solid fa-money-bill-trend-up"></i><span>Negocio</span><strong>Menos pérdidas</strong></article>
+          <article class="dash-card fragment"><i class="fa-solid fa-lock"></i><span>Protección</span><strong>Más seguridad</strong></article>
+          <article class="dash-card fragment"><i class="fa-solid fa-handshake"></i><span>Relación</span><strong>Más confianza</strong></article>
+        </div>
+        <aside class="notes">
+          Conectar la calidad con usuarios, empresas, seguridad y confianza. Una aplicación lenta, confusa o inestable causa frustración. Un sistema con errores genera pérdidas, retrasos, reclamos y mala reputación. Si no protege información, puede haber accesos no autorizados, pérdida de datos o fraudes. Frase: "La confianza del usuario depende en gran parte de la calidad del software."
+        </aside>
+      </section>
+
+      <section data-transition="zoom">
+        <div class="section-label">Marvin</div>
+        <h2>Administración de calidad</h2>
+        <p class="lead">La calidad debe administrarse desde requisitos, diseño, programación, pruebas y entrega.</p>
+        <div class="pdca-cycle fragment" aria-label="Planificar Supervisar Mejorar Mantener">
+          <div class="pdca-node plan"><strong>Planificar</strong><span>Definir qué se espera</span></div>
+          <div class="pdca-node do"><strong>Supervisar</strong><span>Revisar avances</span></div>
+          <div class="pdca-node check"><strong>Mejorar</strong><span>Corregir y optimizar</span></div>
+          <div class="pdca-node act"><strong>Mantener</strong><span>Actualizar y cuidar</span></div>
+          <div class="pdca-center"><i class="fa-solid fa-arrows-rotate"></i></div>
+        </div>
+        <aside class="notes">
+          Definir: "La administración de la calidad del software es el conjunto de actividades que permiten planificar, supervisar, mejorar y mantener la calidad durante todo el desarrollo de un sistema." Aclarar que la calidad no aparece por casualidad y no se debe esperar hasta el final para revisar si todo salió bien. Frase central: "La calidad no se agrega al final, se construye desde el inicio." Explicar las cuatro acciones: planificar requisitos, seguridad, pruebas y estándares; supervisar avances y buenas prácticas; mejorar fallos, pantallas, rendimiento y experiencia; mantener el sistema después de entregarlo.
+        </aside>
+      </section>
+
+      <section data-transition="slide">
+        <div class="section-label">Marvin</div>
+        <h2>Analogía del restaurante</h2>
+        <div class="feature-cards">
+          <article class="feature-card fragment"><i class="fa-solid fa-spray-can-sparkles"></i><h3>Limpieza</h3><p>El proceso debe estar controlado.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-bowl-food"></i><h3>Ingredientes</h3><p>La entrada del proceso debe ser confiable.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-user-tie"></i><h3>Atención</h3><p>La experiencia del cliente también cuenta.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-stopwatch"></i><h3>Tiempo</h3><p>La entrega debe ser eficiente.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-clipboard-check"></i><h3>Control</h3><p>Todo se revisa antes de llegar al usuario.</p></article>
+        </div>
+        <aside class="notes">
+          Decir: "Un restaurante de calidad no solo entrega comida. También cuida la limpieza, los ingredientes, el tiempo de entrega, la atención al cliente y la presentación de los platos." El administrador revisa cocina, ingredientes, recetas, pedidos correctos y atención. En software ocurre algo similar: se revisan requisitos, diseño, programación, pruebas, seguridad, rendimiento y mantenimiento. Frase: "La administración de calidad se encarga de que todo el proceso esté controlado."
+        </aside>
+      </section>
+
+      <section data-transition="zoom">
+        <div class="section-label">Marvin</div>
+        <h2>Caso NASA</h2>
+        <div class="mission-layout">
+          <div class="rocket fragment"><i class="fa-solid fa-rocket"></i></div>
+          <div class="mission-checklist">
+            <div class="check-item fragment"><i class="fa-solid fa-satellite"></i> Sistemas críticos</div>
+            <div class="check-item fragment"><i class="fa-solid fa-triangle-exclamation"></i> Cero errores graves</div>
+            <div class="check-item fragment"><i class="fa-solid fa-clipboard-check"></i> Revisión constante</div>
+            <div class="check-item fragment"><i class="fa-solid fa-shield-halved"></i> Seguridad desde el diseño</div>
+          </div>
+        </div>
+        <aside class="notes">
+          Explicar que en sistemas de la NASA que controlan cohetes, satélites o misiones espaciales, un error pequeño puede tener consecuencias graves. No es lo mismo que falle una aplicación de música a que falle software de una misión espacial. En sistemas críticos, la calidad se administra desde el diseño: requisitos, cálculos, código, pruebas, seguridad y funcionamiento. Frase fuerte: "En sistemas críticos, la calidad del software puede representar la diferencia entre el éxito y el fracaso de una misión."
+        </aside>
+      </section>
+
+      <section data-transition="slide">
+        <div class="section-label">Marvin</div>
+        <h2>Cierre</h2>
+        <div class="quote-panel">
+          <i class="fa-solid fa-quote-left"></i>
+          <p>La calidad es la meta; la administración de calidad es el camino para alcanzarla.</p>
+        </div>
+        <div class="pill-row fragment">
+          <span>Se planifica</span>
+          <span>Se supervisa</span>
+          <span>Se mejora</span>
+          <span>Se mantiene</span>
+        </div>
+        <aside class="notes">
+          Cerrar con el guion: "En conclusión, la calidad del software significa que un sistema funcione correctamente, sea seguro, rápido, fácil de usar y confiable para el usuario." Luego: "La administración de la calidad permite que esa calidad no dependa de la suerte, sino de una forma de trabajo organizada." Frase de cierre: "Hoy dependemos del software para comunicarnos, estudiar, comprar, trabajar y tomar decisiones. Por eso, crear software de calidad significa crear confianza, seguridad y eficiencia." Transición hacia Francisco: después de comprender qué es calidad del software y cómo se administra, Francisco explicará el aseguramiento de la calidad, que se enfoca en prevenir errores antes de que el software llegue al usuario.
+        </aside>
+      </section>
+
+      <!-- ========================= BLOQUE 2 - FRANCISCO ========================= -->
+      <section class="section-title francisco" data-transition="zoom">
+        <div class="speaker-chip"><i class="fa-solid fa-code-branch"></i> Bloque 2 - Francisco</div>
+        <h2>Aseguramiento de Calidad de Software y Tipos de Pruebas</h2>
+        <p class="lead">QA no se trata solo de encontrar errores; se trata de prevenirlos.</p>
+        <aside class="notes">
+          Francisco abre con la idea del PDF: muchas veces se piensa que la calidad solo se prueba al final, pero la calidad empieza desde que se definen los requisitos y continúa durante todo el desarrollo. Presentar que hablará de QA y de los principales tipos de pruebas que ayudan a verificar que un sistema funcione antes de entregarlo.
+        </aside>
+      </section>
+
+      <section data-transition="fade">
+        <div class="section-label">Francisco</div>
+        <h2>QA y pruebas de software</h2>
+        <p class="lead">La calidad se asegura durante todo el desarrollo, no solo cuando el sistema ya está terminado.</p>
+        <div class="feature-cards">
+          <article class="feature-card fragment"><i class="fa-solid fa-shield"></i><h3>Prevención</h3><p>Evitar errores antes de que lleguen al usuario.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-seedling"></i><h3>Calidad desde el inicio</h3><p>Revisar requisitos, diseño, desarrollo y pruebas.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-heart-circle-check"></i><h3>Software confiable</h3><p>Entregar sistemas más estables, seguros y útiles.</p></article>
+        </div>
+        <aside class="notes">
+          Decir: "Un sistema puede verse bien, tener botones bonitos y abrir sin problema, pero si no cumple lo que el usuario necesita, si falla cuando hay muchos datos o si permite errores en la información, entonces no podemos decir que es un software de calidad." La idea que se debe transmitir es que QA no solo encuentra errores: ayuda a prevenirlos y a confirmar que el software cumple su objetivo.
+        </aside>
+      </section>
+
+      <section data-transition="convex">
+        <div class="section-label">Francisco</div>
+        <h2>¿Qué es QA?</h2>
+        <div class="feature-cards">
+          <article class="feature-card fragment"><i class="fa-solid fa-gears"></i><h3>Procesos</h3><p>Buenas prácticas para desarrollar con orden.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-ruler-combined"></i><h3>Estándares</h3><p>Criterios claros para evaluar la calidad.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-magnifying-glass-chart"></i><h3>Revisión</h3><p>Validar requisitos, documentación y resultados.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-bug-slash"></i><h3>Prevención</h3><p>Evitar que los errores lleguen al producto final.</p></article>
+        </div>
+        <aside class="notes">
+          Definir: "El aseguramiento de calidad de software, o QA, es el conjunto de actividades que ayudan a prevenir errores y asegurar que el software se desarrolle siguiendo procesos, estándares y buenas prácticas." Explicar que QA acompaña el proyecto desde el inicio: revisar requisitos, validar procesos, definir criterios de calidad, planificar pruebas, documentar resultados y buscar que el producto final cumpla lo esperado. Frase clave: "QA no se trata solo de encontrar errores; se trata de prevenirlos."
+        </aside>
+      </section>
+
+      <section data-transition="slide">
+        <div class="section-label">Francisco</div>
+        <h2>QA, QC y testing</h2>
+        <div class="decision-grid">
+          <article class="decision-card fragment"><i class="fa-solid fa-shield"></i><h3>QA</h3><p>Previene defectos desde el proceso.</p></article>
+          <article class="decision-card fragment"><i class="fa-solid fa-clipboard-check"></i><h3>QC</h3><p>Verifica el producto ya desarrollado.</p></article>
+          <article class="decision-card fragment"><i class="fa-solid fa-vial-circle-check"></i><h3>Testing</h3><p>Ejecuta el software para comprobar resultados.</p></article>
+        </div>
+        <blockquote class="signal-quote fragment">QA previene, QC verifica y las pruebas comprueban.</blockquote>
+        <aside class="notes">
+          Aclarar los tres conceptos: QA se enfoca en el proceso y busca prevenir defectos; QC se enfoca en el producto final y detecta defectos en lo desarrollado; testing es una actividad específica que ejecuta el software para verificar si cumple lo esperado. Usar la analogía del restaurante: QA pone reglas y controles para cocinar bien, QC revisa si el plato salió bien y testing prueba el plato para confirmar si tiene buen sabor.
+        </aside>
+      </section>
+
+      <section data-transition="fade">
+        <div class="section-label">Francisco</div>
+        <h2>Importancia de QA</h2>
+        <div class="dashboard-grid">
+          <article class="dash-card fragment"><i class="fa-solid fa-bug-slash"></i><span>Prevención</span><strong>Menos errores</strong></article>
+          <article class="dash-card fragment"><i class="fa-solid fa-rotate-left"></i><span>Proceso</span><strong>Menos retrabajo</strong></article>
+          <article class="dash-card fragment"><i class="fa-solid fa-handshake"></i><span>Usuario</span><strong>Más confianza</strong></article>
+          <article class="dash-card fragment"><i class="fa-solid fa-coins"></i><span>Proyecto</span><strong>Menor costo</strong></article>
+        </div>
+        <aside class="notes">
+          Explicar que un error puede causar pérdidas de tiempo, dinero, información o confianza. Ejemplos: una app bancaria que calcula mal un saldo, un inventario con stock incorrecto o un sistema académico que pierde notas. QA reduce riesgos antes de producción, disminuye errores, evita retrabajo, mejora la confianza del usuario, ayuda a cumplir requisitos y reduce costos. Frase para memorizar: "Mientras más tarde se descubre un error, más caro y más difícil puede ser corregirlo."
+        </aside>
+      </section>
+
+      <section data-transition="slide">
+        <div class="section-label">Francisco</div>
+        <h2>QA en el ciclo de desarrollo</h2>
+        <div class="pipeline fragment">
+          <div class="pipe-step"><i class="fa-solid fa-list-check"></i><strong>Requisitos</strong><span>Necesidades claras</span></div>
+          <div class="pipe-line"></div>
+          <div class="pipe-step"><i class="fa-solid fa-pen-ruler"></i><strong>Diseño</strong><span>Solución lógica</span></div>
+          <div class="pipe-line"></div>
+          <div class="pipe-step"><i class="fa-solid fa-code"></i><strong>Desarrollo</strong><span>Buenas prácticas</span></div>
+          <div class="pipe-line"></div>
+          <div class="pipe-step"><i class="fa-solid fa-vial"></i><strong>Pruebas</strong><span>Validación</span></div>
+        </div>
+        <div class="pill-row fragment">
+          <span>Implementación</span>
+          <span>Mantenimiento</span>
+          <span>Mejora continua</span>
+        </div>
+        <aside class="notes">
+          Explicar que QA debe estar en todas las etapas, no solo al final. En requisitos se revisa que las necesidades estén claras; en diseño se valida que la solución sea lógica; en desarrollo se aplican buenas prácticas, revisiones de código y pruebas unitarias; en pruebas se valida funcionamiento, rendimiento, seguridad y usabilidad; en implementación se confirma que el sistema se publique correctamente; en mantenimiento se revisan errores reportados y nuevas versiones. Frase fuerte: "La calidad no se agrega al final; se construye durante todo el proyecto."
+        </aside>
+      </section>
+
+      <section data-transition="zoom">
+        <div class="section-label">Francisco</div>
+        <h2>Tipos de pruebas</h2>
+        <div class="test-grid">
+          <article class="test-card fragment"><i class="fa-solid fa-check-double"></i><h3>Funcionales</h3><p>¿Hace lo que el usuario necesita?</p></article>
+          <article class="test-card fragment"><i class="fa-solid fa-gauge-high"></i><h3>No funcionales</h3><p>¿Funciona bien en condiciones reales?</p></article>
+          <article class="test-card fragment"><i class="fa-solid fa-cube"></i><h3>Unitarias</h3><p>Partes pequeñas del código.</p></article>
+          <article class="test-card fragment"><i class="fa-solid fa-link"></i><h3>Integración</h3><p>Módulos trabajando juntos.</p></article>
+          <article class="test-card fragment"><i class="fa-solid fa-network-wired"></i><h3>Sistema</h3><p>La aplicación completa.</p></article>
+          <article class="test-card fragment"><i class="fa-solid fa-user-check"></i><h3>Aceptación</h3><p>Validación del cliente o usuario.</p></article>
+          <article class="test-card fragment"><i class="fa-solid fa-rotate-left"></i><h3>Regresión</h3><p>Que un cambio no rompa lo anterior.</p></article>
+        </div>
+        <aside class="notes">
+          Introducir la segunda parte: para asegurar calidad no basta con abrir el sistema y ver si carga. Existen distintos tipos de pruebas porque cada una revisa algo diferente: si una función hace lo correcto, si soporta muchos usuarios, si es seguro, si es fácil de usar o si una actualización dañó algo anterior. Idea central: cada tipo de prueba responde una pregunta diferente sobre la calidad del software.
+        </aside>
+      </section>
+
+      <section data-transition="slide">
+        <div class="section-label">Francisco</div>
+        <h2>Pruebas funcionales</h2>
+        <p class="lead">Verifican que el sistema haga lo que debe hacer según los requisitos.</p>
+        <div class="feature-cards">
+          <article class="feature-card fragment"><i class="fa-solid fa-right-to-bracket"></i><h3>Login</h3><p>Entrar con credenciales correctas y bloquear las incorrectas.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-pen-to-square"></i><h3>Registros</h3><p>Guardar reservas, solicitudes o usuarios nuevos.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-chart-column"></i><h3>Reportes</h3><p>Generar información correcta para el usuario.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-calculator"></i><h3>Cálculos</h3><p>Totales, descuentos, IVA o datos numéricos.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-circle-check"></i><h3>Validaciones</h3><p>Mensajes claros si faltan datos o hay errores.</p></article>
+        </div>
+        <aside class="notes">
+          Explicar que las pruebas funcionales responden: "¿el sistema hace lo que el usuario necesita?" Usar ejemplo del login: ingresar con credenciales correctas, no ingresar con contraseña incorrecta y mostrar mensaje si deja campos vacíos. También mencionar registrar usuario, guardar reserva o solicitud, generar reporte, calcular totales y enviar notificaciones.
+        </aside>
+      </section>
+
+      <section data-transition="fade">
+        <div class="section-label">Francisco</div>
+        <h2>Pruebas no funcionales</h2>
+        <p class="lead">No revisan solo qué hace el sistema, sino cómo lo hace.</p>
+        <div class="feature-cards">
+          <article class="feature-card fragment"><i class="fa-solid fa-bolt"></i><h3>Rendimiento</h3><p>Qué tan rápido responde.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-users"></i><h3>Carga</h3><p>Cómo responde con muchos usuarios.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-shield-halved"></i><h3>Seguridad</h3><p>Protección de datos y accesos.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-hand-pointer"></i><h3>Usabilidad</h3><p>Claridad y facilidad de uso.</p></article>
+          <article class="feature-card fragment"><i class="fa-solid fa-display"></i><h3>Compatibilidad</h3><p>Navegadores, dispositivos y sistemas.</p></article>
+        </div>
+        <aside class="notes">
+          Decir: "Un sistema puede tener todas sus funciones, pero si es lento, inseguro, difícil de usar o se cae con muchos usuarios, entonces tiene problemas de calidad." Las pruebas no funcionales incluyen rendimiento, carga, seguridad, usabilidad, compatibilidad y disponibilidad. Frase clave: "Las pruebas no funcionales responden: ¿el sistema funciona bien en condiciones reales?"
+        </aside>
+      </section>
+
+      <section data-transition="zoom">
+        <div class="section-label">Francisco</div>
+        <h2>Pruebas por nivel</h2>
+        <div class="testing-pyramid fragment">
+          <div class="pyramid-layer ui"><span>Aceptación</span><strong>Validación del usuario</strong></div>
+          <div class="pyramid-layer system"><span>Sistema</span><strong>Aplicación completa</strong></div>
+          <div class="pyramid-layer integration"><span>Integración</span><strong>Módulos conectados</strong></div>
+          <div class="pyramid-layer unit"><span>Unitarias</span><strong>Funciones pequeñas</strong></div>
+        </div>
+        <aside class="notes">
+          Explicar que estas pruebas van desde partes pequeñas hasta la validación final. Unitarias revisan funciones o componentes individuales, como calcular IVA o validar una contraseña. Integración revisa que módulos se comuniquen bien, como login con permisos o ventas con inventario. Sistema revisa la aplicación completa con módulos, base de datos, usuarios y reportes. Aceptación valida si el sistema cumple la necesidad del cliente o usuario final.
+        </aside>
+      </section>
+
+      <section data-transition="convex">
+        <div class="section-label">Francisco</div>
+        <h2>Regresión, humo y sanidad</h2>
+        <div class="decision-grid">
+          <article class="decision-card fragment"><i class="fa-solid fa-rotate-left"></i><h3>Regresión</h3><p>Confirmar que un cambio no dañó lo que ya funcionaba.</p></article>
+          <article class="decision-card fragment"><i class="fa-solid fa-smog"></i><h3>Humo</h3><p>Revisión rápida para saber si lo básico carga.</p></article>
+          <article class="decision-card fragment"><i class="fa-solid fa-stethoscope"></i><h3>Sanidad</h3><p>Validar que una corrección específica funcionó.</p></article>
+        </div>
+        <aside class="notes">
+          Explicar que las pruebas de regresión se usan después de cambios para confirmar que una actualización no rompió funciones anteriores. Ejemplo: si se agrega un campo al módulo de reservas, se revisa que todavía funcione guardar, editar, eliminar, buscar y generar reportes. Las pruebas de humo verifican rápidamente que lo básico funcione: que la app abra, que se pueda iniciar sesión y que las pantallas principales carguen. Las pruebas de sanidad revisan que una corrección específica funcionó. Frase: "Cada cambio debe probarse, porque en software una mejora también puede crear nuevos errores."
+        </aside>
+      </section>
+
+      <section data-transition="slide">
+        <div class="section-label">Francisco</div>
+        <h2>Ejemplo aplicado</h2>
+        <p class="lead">App web de reservas, asistencia o inventario.</p>
+        <div class="dashboard-grid">
+          <article class="dash-card fragment"><i class="fa-solid fa-globe"></i><span>App web</span><strong>Login y flujos</strong></article>
+          <article class="dash-card fragment"><i class="fa-solid fa-database"></i><span>Base de datos</span><strong>Registros correctos</strong></article>
+          <article class="dash-card fragment"><i class="fa-solid fa-user-lock"></i><span>Roles</span><strong>Permisos seguros</strong></article>
+          <article class="dash-card fragment"><i class="fa-solid fa-chart-line"></i><span>Reportes</span><strong>Información útil</strong></article>
+          <article class="dash-card fragment"><i class="fa-solid fa-circle-check"></i><span>Validaciones</span><strong>Errores controlados</strong></article>
+        </div>
+        <aside class="notes">
+          Aplicar todo a una app de reservas, asistencia o inventario. Primero QA revisa requisitos: qué datos se registran, qué usuarios participan, qué reportes se necesitan y qué permisos debe tener cada rol. Luego se planifican pruebas para login, registro, edición, búsqueda, validaciones y reportes. Unitarias revisan cálculos y funciones pequeñas; integración valida conexión con base de datos; sistema prueba el flujo completo; aceptación confirma si sirve al usuario; regresión revisa que una actualización no dañe funciones anteriores. Frase: "Este ejemplo demuestra que QA acompaña todo el proceso y que cada tipo de prueba tiene un propósito diferente."
+        </aside>
+      </section>
+
+      <section data-transition="fade">
+        <div class="section-label">Francisco</div>
+        <h2>Cierre</h2>
+        <div class="quote-panel">
+          <i class="fa-solid fa-quote-left"></i>
+          <p>QA previene, las pruebas comprueban y la calidad se construye desde el inicio.</p>
+        </div>
+        <aside class="notes">
+          Cerrar diciendo que el aseguramiento de calidad es fundamental porque ayuda a prevenir errores, ordenar el proceso y entregar sistemas más confiables. QA no significa únicamente probar al final; significa revisar requisitos, definir estándares, planificar pruebas, documentar resultados y mejorar continuamente. Las pruebas funcionales verifican qué hace el sistema, las no funcionales cómo lo hace, y las unitarias, integración, sistema, aceptación y regresión comprueban calidad desde partes pequeñas hasta el sistema completo. Transición: después de asegurar la calidad mediante procesos y pruebas, Luis explicará gestión, métricas y mejora continua.
+        </aside>
+      </section>
+
+      <!-- ========================= BLOQUE 3 - LUIS ========================= -->
+      <section class="section-title luis" data-transition="zoom">
+        <div class="speaker-chip"><i class="fa-solid fa-chart-simple"></i> Bloque 3 - Luis</div>
+        <h2>Gestión de la Calidad del Software</h2>
+        <p class="lead">La calidad no se improvisa: se organiza, se mide y se mejora.</p>
+        <aside class="notes">
+          Luis abre con la idea central del PDF: la calidad del software no depende únicamente de que un programa funcione o no tenga errores visibles. También depende de cómo se organiza el trabajo, cómo se controlan los procesos, cómo se revisan los datos y cómo se mejora constantemente.
+        </aside>
+      </section>
+
+      <section data-transition="slide">
+        <div class="section-label">Luis</div>
+        <h2>Gestión de la Calidad del Software</h2>
+        <p class="lead">Organizar todo lo necesario para que el software cumpla estándares y necesidades del usuario.</p>
+        <div class="luis-command-center">
+          <article class="command-tile fragment"><i class="fa-solid fa-sitemap"></i><strong>Organización</strong></article>
+          <article class="command-tile fragment"><i class="fa-solid fa-gears"></i><strong>Procesos</strong></article>
+          <article class="command-tile fragment"><i class="fa-solid fa-users-gear"></i><strong>Roles</strong></article>
+          <article class="command-tile fragment"><i class="fa-solid fa-chart-line"></i><strong>Métricas</strong></article>
+          <article class="command-tile fragment"><i class="fa-solid fa-arrows-rotate"></i><strong>Mejora continua</strong></article>
+        </div>
+        <aside class="notes">
+          Decir: "Un software de calidad no nace por casualidad. Se logra mediante planificación, organización, medición y mejora continua." Explicar que esta parte no trata solo de revisar si el software sirve al final, sino de administrar la calidad desde el proceso de trabajo.
+        </aside>
+      </section>
+
+      <section data-transition="convex">
+        <div class="section-label">Luis</div>
+        <h2>¿Qué incluye la gestión de calidad?</h2>
+        <div class="quality-components">
+          <article class="component-card fragment"><i class="fa-solid fa-scroll"></i><h3>Políticas</h3><p>Reglas para entregar con pruebas, documentación y revisión.</p></article>
+          <article class="component-card fragment"><i class="fa-solid fa-toolbox"></i><h3>Recursos</h3><p>Herramientas, personas, tiempo y tecnología.</p></article>
+          <article class="component-card fragment"><i class="fa-solid fa-id-badge"></i><h3>Responsables</h3><p>Roles claros para desarrollar, revisar, coordinar y validar.</p></article>
+          <article class="component-card fragment"><i class="fa-solid fa-chart-pie"></i><h3>Mediciones</h3><p>Datos para saber si el sistema realmente funciona bien.</p></article>
+          <article class="component-card fragment"><i class="fa-solid fa-arrow-trend-up"></i><h3>Mejora constante</h3><p>Aprender de fallas y hacerlo mejor en la siguiente versión.</p></article>
+        </div>
+        <aside class="notes">
+          Explicar que la gestión de calidad incluye políticas, recursos, roles, métricas y mejora continua. Frase clave: "La calidad no se improvisa. La calidad se planifica, se mide y se mejora."
+        </aside>
+      </section>
+
+      <section data-transition="fade">
+        <div class="section-label">Luis</div>
+        <h2>Calidad de procesos</h2>
+        <p class="lead">No solo importa el resultado final, también importa el camino que se siguió para llegar a ese resultado.</p>
+        <div class="process-lane fragment">
+          <div class="process-step"><i class="fa-solid fa-list-check"></i><span>Procesos ordenados</span></div>
+          <div class="process-step"><i class="fa-solid fa-database"></i><span>Datos confiables</span></div>
+          <div class="process-step"><i class="fa-solid fa-circle-check"></i><span>Validación</span></div>
+          <div class="process-step"><i class="fa-solid fa-file-lines"></i><span>Documentación</span></div>
+          <div class="process-step"><i class="fa-solid fa-bug-slash"></i><span>Menos errores</span></div>
+        </div>
+        <blockquote class="signal-quote fragment">Un buen producto depende de un buen proceso.</blockquote>
+        <aside class="notes">
+          Decir: "Un proceso de calidad es un proceso ordenado, documentado, medible y controlado. Si el proceso está mal, el resultado probablemente también saldrá mal." Conectar con software: si no hay buen proceso para requisitos, desarrollo, pruebas, corrección y documentación, el sistema puede terminar con errores, retrasos o problemas para el usuario.
+        </aside>
+      </section>
+
+      <section data-transition="slide">
+        <div class="section-label">Luis</div>
+        <h2>Ejemplo: Power BI y ETL</h2>
+        <p class="lead">Un dashboard de calidad depende de que el proceso ETL esté bien diseñado y de que los datos sean correctos.</p>
+        <div class="etl-pipeline fragment">
+          <div class="etl-node extract"><i class="fa-solid fa-download"></i><strong>Extraer</strong><span>Excel, bases de datos, reportes</span></div>
+          <div class="etl-arrow"></div>
+          <div class="etl-node transform"><i class="fa-solid fa-filter"></i><strong>Transformar</strong><span>Limpiar, corregir, ordenar</span></div>
+          <div class="etl-arrow"></div>
+          <div class="etl-node load"><i class="fa-solid fa-upload"></i><strong>Cargar</strong><span>Power BI e indicadores</span></div>
+          <div class="powerbi-card"><span>BI</span><strong>Reportes confiables</strong></div>
+        </div>
+        <aside class="notes">
+          Explicar: "ETL significa Extraer, Transformar y Cargar. Primero se extraen datos de una fuente, luego se limpian o transforman, y finalmente se cargan en un sistema o dashboard para analizarlos." Frase importante: "En Power BI no basta con que el tablero se vea bonito. Lo más importante es que los datos sean confiables."
+        </aside>
+      </section>
+
+      <section data-transition="convex">
+        <div class="section-label">Luis</div>
+        <h2>¿Qué se controla en ETL?</h2>
+        <div class="data-quality-grid">
+          <article class="data-card fragment"><i class="fa-solid fa-database"></i><h3>Fuente de datos</h3><p>De dónde viene la información.</p></article>
+          <article class="data-card fragment"><i class="fa-solid fa-broom"></i><h3>Limpieza</h3><p>Formatos, duplicados y datos incompletos.</p></article>
+          <article class="data-card fragment"><i class="fa-solid fa-box-archive"></i><h3>Carga completa</h3><p>Sin pérdida de registros.</p></article>
+          <article class="data-card fragment"><i class="fa-solid fa-scale-balanced"></i><h3>Validación</h3><p>Comparar fuente contra reporte final.</p></article>
+          <article class="data-card fragment"><i class="fa-solid fa-clock-rotate-left"></i><h3>Actualización automática</h3><p>Conexión estable y datos recientes.</p></article>
+        </div>
+        <aside class="notes">
+          Decir: si en la fuente hay 1,000 registros, en el reporte final no deberían aparecer 950 sin explicación. Cuando el proceso es automático, también hay que revisar que se actualice correctamente, que no falle la conexión y que los datos sean recientes. "Todo esto demuestra que la calidad no solo está en el software final, sino en cada paso del proceso."
+        </aside>
+      </section>
+
+      <section data-transition="zoom">
+        <div class="section-label">Luis</div>
+        <h2>Analogía: un hospital</h2>
+        <div class="hospital-layout">
+          <div class="hospital-core fragment"><i class="fa-solid fa-hospital"></i><span>Calidad = coordinación</span></div>
+          <div class="hospital-signals">
+            <div class="hospital-item fragment"><i class="fa-solid fa-clipboard-list"></i> Protocolos</div>
+            <div class="hospital-item fragment"><i class="fa-solid fa-people-arrows"></i> Coordinación</div>
+            <div class="hospital-item fragment"><i class="fa-solid fa-eye"></i> Supervisión</div>
+            <div class="hospital-item fragment"><i class="fa-solid fa-file-medical"></i> Registros</div>
+            <div class="hospital-item fragment"><i class="fa-solid fa-user-doctor"></i> Responsables</div>
+          </div>
+        </div>
+        <aside class="notes">
+          Explicar: "En un hospital no basta con tener buenos doctores. También se necesitan protocolos, limpieza, horarios, equipo médico, registros, coordinación y supervisión." En software pasa lo mismo: no basta con buenos programadores; se necesitan procesos, roles, métricas, documentación y mejora continua. Frase de apoyo: "La calidad depende tanto de las personas como del proceso que siguen."
+        </aside>
+      </section>
+
+      <section data-transition="fade">
+        <div class="section-label">Luis</div>
+        <h2>Amazon: calidad administrada con datos</h2>
+        <p class="lead">En empresas grandes, la calidad no se deja a la suerte. Se controla con procesos y mediciones.</p>
+        <div class="amazon-monitor">
+          <article class="monitor-card fragment"><i class="fa-solid fa-eye"></i><strong>Monitoreo 24/7</strong><span>Sistemas observados constantemente</span></article>
+          <article class="monitor-card fragment"><i class="fa-solid fa-server"></i><strong>Sistemas estables</strong><span>Compras, pagos, envíos y cuentas</span></article>
+          <article class="monitor-card fragment"><i class="fa-solid fa-triangle-exclamation"></i><strong>Detección rápida</strong><span>Fallas antes de escalar</span></article>
+          <article class="monitor-card fragment"><i class="fa-solid fa-users-gear"></i><strong>Equipos especializados</strong><span>Responsables por áreas críticas</span></article>
+          <article class="monitor-card fragment"><i class="fa-solid fa-chart-simple"></i><strong>Uso de métricas</strong><span>Decisiones basadas en datos</span></article>
+        </div>
+        <aside class="notes">
+          Decir: "Amazon maneja millones de usuarios, compras, pagos, envíos y servicios en línea. Si una plataforma como Amazon falla, no solo afecta a la empresa: también afecta a vendedores, compradores, pagos, entregas y la confianza de los usuarios." Recalcar que administran la calidad con indicadores y métricas, no solo con opiniones.
+        </aside>
+      </section>
+
+      <section data-transition="slide">
+        <div class="section-label">Luis</div>
+        <h2>Métricas de calidad</h2>
+        <p class="lead">Las métricas permiten tomar decisiones con base en datos, no solo en suposiciones.</p>
+        <div class="luis-metrics-board">
+          <article class="kpi-card fragment" data-fill="70"><span>Bugs</span><strong>Errores detectados</strong><div class="progress-track"><i></i></div></article>
+          <article class="kpi-card fragment" data-fill="84"><span>Tiempo de respuesta</span><strong>Velocidad</strong><div class="progress-track"><i></i></div></article>
+          <article class="kpi-card fragment" data-fill="96"><span>Disponibilidad</span><strong>Servicio activo</strong><div class="progress-track"><i></i></div></article>
+          <article class="kpi-card fragment" data-fill="76"><span>Rendimiento</span><strong>Carga y usuarios</strong><div class="progress-track"><i></i></div></article>
+          <article class="kpi-card fragment" data-fill="88"><span>Satisfacción</span><strong>Experiencia real</strong><div class="progress-track"><i></i></div></article>
+          <article class="kpi-card fragment" data-fill="82"><span>Calidad de datos</span><strong>Correctos y completos</strong><div class="progress-track"><i></i></div></article>
+        </div>
+        <aside class="notes">
+          Explicar que una métrica es un dato medible para evaluar el estado del software o del proceso. Incluir ejemplos: número de errores, tiempo de respuesta, disponibilidad, satisfacción del usuario, rendimiento y calidad de datos. Frases fuertes: "Lo que no se mide, difícilmente se puede mejorar" y "Un dashboard con datos incorrectos no informa, desinforma."
+        </aside>
+      </section>
+
+      <section data-transition="zoom">
+        <div class="section-label">Luis</div>
+        <h2>Mejora continua: PHVA</h2>
+        <div class="pdca-cycle phva-cycle fragment" aria-label="Planificar Hacer Verificar Actuar">
+          <div class="pdca-node plan"><strong>Planificar</strong><span>Identificar qué mejorar</span></div>
+          <div class="pdca-node do"><strong>Hacer</strong><span>Aplicar una solución</span></div>
+          <div class="pdca-node check"><strong>Verificar</strong><span>Medir si funcionó</span></div>
+          <div class="pdca-node act"><strong>Actuar</strong><span>Documentar o ajustar</span></div>
+          <div class="pdca-center"><i class="fa-solid fa-arrows-rotate"></i></div>
+        </div>
+        <aside class="notes">
+          Decir: "La calidad no se alcanza una sola vez. La calidad se mantiene mejorando constantemente." Explicar el ciclo PHVA: Planificar para identificar el problema, Hacer para aplicar una solución, Verificar para medir resultados y Actuar para dejar como estándar lo que funciona o buscar otra solución si no funcionó.
+        </aside>
+      </section>
+
+      <section data-transition="convex">
+        <div class="section-label">Luis</div>
+        <h2>Power BI: mejora continua aplicada</h2>
+        <div class="powerbi-improvement">
+          <div class="chart-card fragment">
+            <h3>Problema</h3>
+            <p>El dashboard tarda mucho en cargar y a veces muestra datos incompletos.</p>
+          </div>
+          <div class="chart-card fragment">
+            <h3>Acción</h3>
+            <p>Revisar ETL, limpiar duplicados, optimizar consultas y mejorar el modelo de datos.</p>
+          </div>
+          <div class="chart-card fragment">
+            <h3>Resultado</h3>
+            <p>Comparar carga, datos y fuente original. Si funciona, documentar el nuevo estándar.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          Usar el ejemplo completo del PDF: una empresa tiene un dashboard de Power BI con quejas por lentitud y datos incompletos. Planificar: identificar el problema. Hacer: revisar ETL, limpiar duplicados, optimizar consultas y mejorar el modelo. Verificar: medir si carga más rápido y si los datos coinciden. Actuar: documentar el nuevo proceso para futuros reportes.
+        </aside>
+      </section>
+
+      <section data-transition="slide">
+        <div class="section-label">Luis</div>
+        <h2>Cierre de Luis</h2>
+        <div class="luis-close">
+          <div class="quote-panel fragment">
+            <i class="fa-solid fa-quote-left"></i>
+            <p>Gestionar, medir y mejorar son tres pasos clave para lograr software de calidad.</p>
+          </div>
+          <div class="closing-pills fragment">
+            <span>La calidad no se improvisa</span>
+            <span>Se planifica</span>
+            <span>Se mide</span>
+            <span>Se mejora</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Cierre del PDF: la gestión de calidad permite que un proyecto no dependa solo del talento individual, sino de una forma de trabajo organizada. En automatización, Power BI y ETL, la calidad también está en los datos y en el proceso que transforma esos datos. Transición: "Después de gestionar la calidad, también es necesario controlar el producto final. Por eso, mi compañero David explicará el control de calidad del software y los factores que determinan si un software realmente es de calidad."
+        </aside>
+      </section>
+
+      <!-- ========================= BLOQUE 4 - DAVID ========================= -->
+      <section class="section-title david" data-transition="zoom">
+        <div class="speaker-chip"><i class="fa-solid fa-shield-virus"></i> Bloque 4 - David</div>
+        <h2>Control de Calidad del Software y Factores de Calidad</h2>
+        <p class="lead">Revisar, probar, detectar errores y comprobar si el producto cumple lo prometido.</p>
+        <aside class="notes">
+          Abrir conectando con Luis: "Gracias Luis. Él explicó cómo se gestiona la calidad con procesos, métricas y mejora continua. Ahora yo voy a hablar de la parte donde revisamos el producto final: el control de calidad del software y los factores que nos dicen si un software realmente es bueno." La idea es comprobar la calidad del producto y explicar qué características hacen que un software sea bueno.
+        </aside>
+      </section>
+
+      <section data-transition="fade">
+        <div class="section-label">David</div>
+        <h2>Control de calidad</h2>
+        <div class="split-layout">
+          <div>
+            <p class="lead">Revisar el producto para comprobar si funciona bien y cumple lo que se pidió.</p>
+            <ul class="clean-list">
+              <li class="fragment"><i class="fa-solid fa-magnifying-glass"></i> Revisar.</li>
+              <li class="fragment"><i class="fa-solid fa-vial-circle-check"></i> Probar.</li>
+              <li class="fragment"><i class="fa-solid fa-bug-slash"></i> Detectar errores.</li>
+              <li class="fragment"><i class="fa-solid fa-clipboard-check"></i> Verificar requisitos.</li>
+            </ul>
+          </div>
+          <div class="qc-console fragment">
+            <div class="console-line ok">CHECK funciones principales</div>
+            <div class="console-line ok">PASS requisitos esperados</div>
+            <div class="console-line warn">WARN flujo confuso</div>
+            <div class="console-line fail">FAIL bug encontrado</div>
+          </div>
+        </div>
+        <aside class="notes">
+          Decir: "El control de calidad del software es el conjunto de actividades que se hacen para revisar el producto, encontrar errores y comprobar si cumple con los requisitos." En palabras simples: es revisar que el software funcione bien antes de entregarlo o antes de que lo usen muchas personas. Analogía: como revisar un trabajo antes de entregarlo al ingeniero; no basta con haberlo hecho, hay que revisar si está completo, si no tiene errores y si responde lo que pidieron.
+        </aside>
+      </section>
+
+      <section data-transition="convex">
+        <div class="section-label">David</div>
+        <h2>QA vs Control de calidad</h2>
+        <div class="duo-panel">
+          <article class="glass-card fragment">
+            <i class="fa-solid fa-shield"></i>
+            <h3>QA</h3>
+            <p>Busca evitar errores desde el proceso: reglas, orden, estándares y buenas prácticas.</p>
+            <span class="tag good-tag">Previene errores</span>
+          </article>
+          <article class="glass-card fragment">
+            <i class="fa-solid fa-bug-slash"></i>
+            <h3>QC</h3>
+            <p>Busca encontrar errores en el producto construido o en una versión que se va a entregar.</p>
+            <span class="tag warning-tag">Detecta errores</span>
+          </article>
+        </div>
+        <aside class="notes">
+          Explicar sin complicarse: QA o aseguramiento de calidad busca prevenir errores desde el proceso. En cambio, el control de calidad busca detectar errores en el producto ya construido o en una versión que se va a entregar. Analogía del restaurante: QA sería tener reglas para cocinar bien, como higiene, recetas, tiempos y orden. Control de calidad sería probar el plato antes de servirlo para verificar que no esté quemado, crudo o mal preparado. Frase: "QA previene errores. Control de calidad detecta errores."
+        </aside>
+      </section>
+
+      <section data-transition="slide">
+        <div class="section-label">David</div>
+        <h2>Analogía de videojuegos</h2>
+        <div class="game-layout">
+          <div class="game-screen fragment">
+            <div class="player"></div>
+            <div class="platform one"></div>
+            <div class="platform two"></div>
+            <div class="bug-sprite"><i class="fa-solid fa-bug"></i></div>
+            <div class="hud">BUG: <span>mission_blocked</span></div>
+          </div>
+          <div class="game-notes">
+            <div class="mini-card fragment"><i class="fa-solid fa-gamepad"></i> Testers</div>
+            <div class="mini-card fragment"><i class="fa-solid fa-bug"></i> Bugs</div>
+            <div class="mini-card fragment"><i class="fa-solid fa-vial"></i> Pruebas</div>
+            <div class="mini-card fragment"><i class="fa-solid fa-screwdriver-wrench"></i> Correcciones</div>
+          </div>
+        </div>
+        <aside class="notes">
+          Decir: "Una forma fácil de entender el control de calidad es pensar en los videojuegos." Antes de lanzar un videojuego, testers juegan muchas horas buscando errores: intentan romper el juego, probar movimientos raros, abrir menús, cambiar configuraciones y hacer cosas que un jugador normal también podría hacer. Explicar que un bug puede ser que el personaje atraviese una pared, que se cierre el juego, que una misión no avance o que el rendimiento sea muy bajo. El objetivo es que esos errores los encuentre el equipo antes de que los encuentre el usuario.
+        </aside>
+      </section>
+
+      <section data-transition="convex">
+        <div class="section-label">David</div>
+        <h2>Caso No Man's Sky</h2>
+        <div class="warning-layout">
+          <div class="glitch-title fragment">SPACE PATCH</div>
+          <div class="issue-stack">
+            <div class="issue fragment"><i class="fa-solid fa-rocket"></i> Promesas altas</div>
+            <div class="issue fragment"><i class="fa-solid fa-triangle-exclamation"></i> Lanzamiento difícil</div>
+            <div class="issue fragment"><i class="fa-solid fa-download"></i> Actualizaciones constantes</div>
+            <div class="issue fragment"><i class="fa-solid fa-arrow-trend-up"></i> Recuperación de confianza</div>
+          </div>
+        </div>
+        <aside class="notes">
+          Presentar el caso: No Man's Sky prometía una experiencia enorme: explorar planetas, descubrir especies, viajar por el espacio y vivir una aventura muy grande. Cuando salió, muchos jugadores sintieron que no cumplía todo lo prometido: se sintió incompleto, con falta de contenido y experiencia repetitiva. Eso afectó la confianza de la comunidad. Lo importante es que la empresa no abandonó el juego; siguió lanzando actualizaciones, agregando contenido, corrigiendo errores y mejorando la experiencia. Frase fuerte: "No Man's Sky demuestra que la calidad no termina el día del lanzamiento. La calidad también se demuestra cuando una empresa escucha, corrige y mejora su producto."
+        </aside>
+      </section>
+
+      <section data-transition="fade">
+        <div class="section-label">David</div>
+        <h2>Factores de calidad</h2>
+        <div class="radial-quality compact-radial fragment" aria-label="Diagrama radial de factores de calidad">
+          <svg viewBox="0 0 640 520" role="img">
+            <defs>
+              <linearGradient id="radialGlowDavid" x1="0" x2="1">
+                <stop offset="0%" stop-color="#2efcff"/>
+                <stop offset="100%" stop-color="#56ff8e"/>
+              </linearGradient>
+            </defs>
+            <circle class="radial-ring" cx="320" cy="260" r="168"></circle>
+            <circle class="radial-ring small" cx="320" cy="260" r="94"></circle>
+            <line x1="320" y1="260" x2="320" y2="58"></line>
+            <line x1="320" y1="260" x2="510" y2="185"></line>
+            <line x1="320" y1="260" x2="438" y2="430"></line>
+            <line x1="320" y1="260" x2="202" y2="430"></line>
+            <line x1="320" y1="260" x2="130" y2="185"></line>
+            <circle class="center-dot" cx="320" cy="260" r="56"></circle>
+            <text x="320" y="254" text-anchor="middle">SOFTWARE</text>
+            <text x="320" y="282" text-anchor="middle">DE CALIDAD</text>
+            <g class="factor-node" style="--i:1"><circle cx="320" cy="58" r="44"></circle><text x="320" y="64" text-anchor="middle">Usabilidad</text></g>
+            <g class="factor-node" style="--i:2"><circle cx="510" cy="185" r="44"></circle><text x="510" y="191" text-anchor="middle">Rendimiento</text></g>
+            <g class="factor-node" style="--i:3"><circle cx="438" cy="430" r="44"></circle><text x="438" y="436" text-anchor="middle">Seguridad</text></g>
+            <g class="factor-node" style="--i:4"><circle cx="202" cy="430" r="44"></circle><text x="202" y="436" text-anchor="middle">Confiable</text></g>
+            <g class="factor-node" style="--i:5"><circle cx="130" cy="185" r="44"></circle><text x="130" y="191" text-anchor="middle">Mantenible</text></g>
+          </svg>
+        </div>
+        <aside class="notes">
+          Preguntar: "¿Cómo sabemos si un software realmente es de calidad?" Explicar que un software no es bueno solo porque abre o porque tiene muchas funciones. También debe ser fácil, rápido, seguro, confiable y fácil de mejorar. Introducir los cinco factores del PDF: usabilidad, rendimiento, seguridad, confiabilidad y mantenibilidad.
+        </aside>
+      </section>
+
+      <section data-transition="slide">
+        <div class="section-label">David</div>
+        <h2>Usabilidad</h2>
+        <p class="lead">Si el usuario se pierde, el software tiene mala usabilidad.</p>
+        <div class="app-comparison">
+          <article class="phone-card good fragment">
+            <div class="phone-top"></div>
+            <i class="fa-brands fa-tiktok"></i>
+            <h3>TikTok</h3>
+            <p>El usuario entiende rápido dónde tocar y qué hacer.</p>
+          </article>
+          <article class="phone-card good fragment">
+            <div class="phone-top"></div>
+            <i class="fa-brands fa-whatsapp"></i>
+            <h3>WhatsApp</h3>
+            <p>Mensajes simples, interfaz clara y flujo directo.</p>
+          </article>
+          <article class="phone-card bad fragment">
+            <div class="phone-top"></div>
+            <i class="fa-solid fa-sliders"></i>
+            <h3>Confuso</h3>
+            <p>Demasiados botones, pasos innecesarios y dudas.</p>
+          </article>
+        </div>
+        <aside class="notes">
+          Explicar que usabilidad significa qué tan fácil es usar el software. Usar ejemplos: TikTok o WhatsApp son fáciles de usar porque uno entiende rápido qué hacer, dónde tocar y cómo encontrar funciones principales. Analogía: es como un control remoto con demasiados botones; si nadie sabe cuál usar, no es cómodo. Frase corta: "Si el usuario se pierde, el software tiene mala usabilidad."
+        </aside>
+      </section>
+
+      <section data-transition="slide">
+        <div class="section-label">David</div>
+        <h2>Rendimiento y seguridad</h2>
+        <div class="speed-compare">
+          <article class="speed-card fast fragment">
+            <i class="fa-solid fa-bolt"></i>
+            <h3>Rendimiento</h3>
+            <div class="speed-bar"><span></span></div>
+            <p>El software debe abrir, responder y procesar sin desesperar al usuario.</p>
+          </article>
+          <article class="speed-card fast fragment">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h3>Seguridad</h3>
+            <div class="speed-bar"><span></span></div>
+            <p>Debe proteger cuentas, contraseñas, transferencias y datos personales.</p>
+          </article>
+        </div>
+        <aside class="notes">
+          Rendimiento significa qué tan rápido y fluido funciona el software. Una aplicación puede tener buenas funciones, pero si tarda demasiado en abrir, se congela o responde lento, el usuario se desespera. Seguridad significa proteger la información del usuario. En una aplicación bancaria es fundamental porque maneja cuentas, transferencias, contraseñas y datos personales. Analogía: la seguridad es como la cerradura de una casa; si la casa es bonita pero no tiene cerradura, cualquiera puede entrar. Frase: "Un software sin seguridad puede poner en riesgo a la empresa y al usuario."
+        </aside>
+      </section>
+
+      <section data-transition="fade">
+        <div class="section-label">David</div>
+        <h2>Confiabilidad</h2>
+        <div class="split-layout">
+          <div>
+            <p class="lead">Un software confiable funciona correctamente la mayor parte del tiempo.</p>
+            <ul class="clean-list">
+              <li class="fragment"><i class="fa-brands fa-google"></i> Google responde cuando lo necesitamos.</li>
+              <li class="fragment"><i class="fa-solid fa-car-side"></i> Como un carro que siempre arranca.</li>
+              <li class="fragment"><i class="fa-solid fa-heart-circle-check"></i> Si el usuario no confía, la calidad se pierde.</li>
+            </ul>
+          </div>
+          <div class="glass-panel fragment">
+            <div class="quality-equation">
+              <span>Estabilidad</span>
+              <i class="fa-solid fa-plus"></i>
+              <span>Pocas fallas</span>
+              <i class="fa-solid fa-plus"></i>
+              <span>Confianza</span>
+              <i class="fa-solid fa-equals"></i>
+              <strong>Confiabilidad</strong>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">
+          Explicar que confiabilidad significa que el software funcione correctamente la mayor parte del tiempo. Usar Google como ejemplo: la mayoría del tiempo uno busca algo y espera que responda sin fallar. Analogía: es como un carro que siempre arranca; si un carro a veces enciende y a veces no, uno deja de confiar en él. Frase corta: "Si el usuario no confía en que el sistema funcione, la calidad se pierde."
+        </aside>
+      </section>
+
+      <section data-transition="slide">
+        <div class="section-label">David</div>
+        <h2>Mantenibilidad</h2>
+        <div class="compare-grid">
+          <article class="compare-card good fragment">
+            <i class="fa-solid fa-download hero-icon"></i>
+            <h3>No Man's Sky</h3>
+            <p>Mejoró con actualizaciones, correcciones y nuevas funciones durante años.</p>
+          </article>
+          <article class="compare-card good fragment">
+            <i class="fa-brands fa-whatsapp hero-icon"></i>
+            <h3>WhatsApp</h3>
+            <p>Agrega funciones nuevas porque el software puede mantenerse y evolucionar.</p>
+          </article>
+        </div>
+        <aside class="notes">
+          Explicar que mantenibilidad significa qué tan fácil es corregir, actualizar o mejorar el software. No Man's Sky sirve para explicarlo porque pudo mejorar con actualizaciones, correcciones y nuevas funciones. WhatsApp también agrega funciones nuevas con el tiempo. Analogía: es como construir una casa dejando espacio para remodelar; si todo está mal construido, cualquier cambio se vuelve difícil. Frase corta: "Un software de calidad debe poder mejorar sin romperse."
+        </aside>
+      </section>
+
+      <section data-transition="zoom">
+        <div class="section-label">Cierre</div>
+        <h2>Cierre</h2>
+        <div class="quote-panel">
+          <i class="fa-solid fa-quote-left"></i>
+          <p>La calidad del software no es un detalle final; es algo que se revisa, se controla y se mejora constantemente.</p>
+        </div>
+        <aside class="notes">
+          Cerrar diciendo: "En conclusión, el control de calidad del software es importante porque ayuda a encontrar errores antes de que afecten al usuario. También nos ayuda a comprobar si el sistema realmente cumple con lo que promete. Y los factores de calidad nos permiten evaluar el software de una forma más completa: no solo si funciona, sino si es fácil de usar, rápido, seguro, confiable y fácil de mejorar." Rematar con No Man's Sky: lanzar un producto con fallas puede dañar la confianza, pero escuchar al usuario, corregir errores y mejorar constantemente puede recuperarla.
+        </aside>
+      </section>
+
+      <!-- ========================= CIERRE ========================= -->
+      <section class="final-summary" data-transition="zoom">
+        <div class="section-label">Conclusiones</div>
+        <h2>Resumen visual</h2>
+        <div class="summary-grid">
+          <article class="summary-card fragment"><i class="fa-solid fa-layer-group"></i><strong>Definir</strong><span>Qué significa calidad.</span></article>
+          <article class="summary-card fragment"><i class="fa-solid fa-shield"></i><strong>Asegurar</strong><span>Prevenir defectos.</span></article>
+          <article class="summary-card fragment"><i class="fa-solid fa-chart-line"></i><strong>Gestionar</strong><span>Medir y mejorar.</span></article>
+          <article class="summary-card fragment"><i class="fa-solid fa-bug-slash"></i><strong>Controlar</strong><span>Detectar y decidir.</span></article>
+        </div>
+        <aside class="notes">
+          Resumir los cuatro bloques como una cadena completa de calidad: definición, aseguramiento, gestión y control.
+        </aside>
+      </section>
+
+      <section data-transition="fade">
+        <div class="section-label">Conclusiones fuertes</div>
+        <h2>Ideas que deben quedarse</h2>
+        <div class="big-lines">
+          <p class="fragment">Un software con errores puede costar millones.</p>
+          <p class="fragment">Hoy el software controla bancos, hospitales y autos.</p>
+          <p class="fragment">La confianza del usuario depende de la calidad.</p>
+        </div>
+        <aside class="notes">
+          Leer cada frase con pausa. Son las tres ideas memorables para cerrar la exposición.
+        </aside>
+      </section>
+
+      <section class="closing-slide" data-transition="zoom-in fade-out">
+        <div class="kicker">Administración de la Calidad del Software</div>
+        <h2>Calidad no es una fase.<br>Es una cultura.</h2>
+        <p class="subtitle">Gracias</p>
+        <div class="team-grid compact">
+          <span>Marvin</span>
+          <span>Francisco</span>
+          <span>Luis</span>
+          <span>David</span>
+        </div>
+        <aside class="notes">
+          Cierre final. Agradecer, abrir espacio a preguntas y regresar a la frase central: la calidad se construye desde el inicio.
+        </aside>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

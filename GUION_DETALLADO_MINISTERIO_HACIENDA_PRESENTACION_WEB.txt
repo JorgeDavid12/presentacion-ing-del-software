@@ -1,0 +1,924 @@
+GUION DETALLADO PARA CONSTRUIR LA PRESENTACIÓN WEB
+CASO: SGSI PARA EL MINISTERIO DE HACIENDA DE COSTA RICA
+Curso: Seguridad y Auditoría de Sistemas
+Duración objetivo total: 15 minutos
+Integrantes: David, Walder, Francisco y Luis
+Formato: presentación web 16:9 reutilizando la identidad visual de AUDITORIA_PRESENTACION_WEB
+
+======================================================================
+1. OBJETIVO DE ESTE DOCUMENTO
+======================================================================
+
+Este archivo NO es todavía el guion final que se entregará al grupo para memorizar.
+Es el documento fuente para construir primero la presentación web y, después, generar
+un guion oral más limpio y corto.
+
+FUENTES DE VERDAD:
+- Contenido académico: "Hoja de Trabajo No 2 Casos de Uso SGSI y Alieneacion NIST 2.0-1".
+- Diseño y comportamiento: "AUDITORIA_PRESENTACION_WEB".
+
+ALCANCE DE LA EXPOSICIÓN:
+- Exponer únicamente el CASO 1: "SGSI para el Ministerio de Hacienda de Costa Rica".
+- NO incluir los tres casos críticos de LogiTech.
+- NO agregar cifras, nombres de atacantes, tecnologías, hechos históricos o controles
+  que no estén respaldados por el documento fuente.
+- El documento del Ministerio está estructurado como propuesta de SGSI y utiliza como
+  referencias controles ISO/IEC 27001:2022. La parte de alineación detallada con
+  subcategorías NIST CSF 2.0 corresponde a los casos posteriores de LogiTech y queda
+  fuera de esta exposición.
+
+MENSAJE CENTRAL:
+"El problema no se resuelve solo cambiando una contraseña. La propuesta combina
+gestión de credenciales, autenticación segura, segmentación, respuesta ante ransomware
+y recuperación para mantener funcionando los servicios críticos."
+
+======================================================================
+2. REGLAS GENERALES DE DISEÑO PARA CODEX
+======================================================================
+
+Conservar de la presentación web existente:
+- Reveal.js como motor.
+- Formato 16:9, lienzo lógico 1280 x 720.
+- Fondo oscuro tecnológico.
+- Canvas de partículas, conexiones, rejilla, scanline y código flotante.
+- Tipografías:
+  * Space Grotesk: títulos.
+  * Inter: texto.
+  * JetBrains Mono: códigos, controles, métricas y etiquetas.
+- Glassmorphism, bordes sutiles, sombras suaves y acentos neón.
+- Barra de progreso, número de diapositiva y navegación por teclado.
+- Sistema de fragments para revelar ideas al ritmo del expositor.
+- Notas del presentador en <aside class="notes">.
+
+NO conservar del contenido anterior:
+- QA, testing, NASA, Netflix, videojuegos, Power BI, ETL, hospital, automóvil,
+  ejemplos de la presentación antigua o cualquier metáfora que ya no corresponda.
+- Textos o notas del presentador del tema anterior.
+- Porcentajes o KPIs inventados.
+
+PALETA SEMÁNTICA SUGERIDA:
+- Cian / azul: contexto, SGSI, acceso y arquitectura.
+- Amarillo: prevención, política y atención.
+- Verde: controles correctos, recuperación, validación.
+- Rojo: riesgo, ransomware, cuenta comprometida, aislamiento.
+- Blanco: títulos y datos principales.
+- Gris azulado: texto secundario.
+
+ESTILO DE TEXTO:
+- Una idea principal por slide.
+- Máximo 3 a 5 elementos visibles importantes.
+- Evitar párrafos grandes.
+- Lo detallado va en las notas del presentador, no en pantalla.
+- Los códigos de controles pueden mostrarse en chips con JetBrains Mono:
+  A.5.15, A.5.17, A.8.20, A.8.5, A.8.22.
+
+ANIMACIÓN:
+- El fondo puede mantenerse en movimiento lento.
+- Las animaciones de contenido deben expresar la idea.
+- No hacer que todos los elementos vuelen o reboten.
+- Usar fragments con entrada suave tipo revealPop.
+- Usar zoom o pulso solo para eventos críticos.
+- Las transiciones entre slides deben ser intencionales, no aleatorias.
+
+======================================================================
+3. DISTRIBUCIÓN GENERAL Y TIEMPOS
+======================================================================
+
+SLIDE 01 - Portada ................................ David ...... 0:15
+SLIDE 02 - Del incidente al SGSI .................. David ...... 1:00
+SLIDE 03 - Qué protege el SGSI y quién responde ... David ...... 1:10
+
+SLIDE 04 - Fase 1: política de contraseñas ........ Walder ..... 1:05
+SLIDE 05 - Credenciales comprometidas ............. Walder ..... 0:55
+SLIDE 06 - Cultura y modelo de sanciones .......... Walder ..... 0:50
+
+SLIDE 07 - Fase 2: MFA adaptativo ................. Francisco .. 1:10
+SLIDE 08 - Acceso condicional y segmentación ...... Francisco .. 1:20
+
+SLIDE 09 - Fase 3: aislamiento de emergencia ...... Luis ....... 1:30
+SLIDE 10 - Operación en estado degradado .......... Luis ....... 1:05
+SLIDE 11 - Respaldos y recuperación ............... Luis ....... 1:15
+
+SLIDE 12 - Cierre: defensa en capas ................ David ...... 0:45
+
+Tiempo de exposición hablado aproximado: 14:00
+Margen para cambios de expositor / pausa / navegación: ~0:45
+Objetivo real: terminar entre 14:30 y 14:50, nunca pasar de 15:00.
+
+ORDEN DE EXPOSITORES:
+David -> Walder -> Francisco -> Luis -> David
+
+======================================================================
+4. GUION SLIDE POR SLIDE
+======================================================================
+
+----------------------------------------------------------------------
+SLIDE 01 — PORTADA
+Expositor: DAVID
+Tiempo: 15 segundos
+----------------------------------------------------------------------
+TÍTULO:
+"SGSI para el Ministerio de Hacienda de Costa Rica"
+
+SUBTÍTULO:
+"Propuesta de prevención, contención y recuperación ante credenciales comprometidas y ransomware"
+
+PIE:
+"Seguridad y Auditoría de Sistemas"
+"David · Walder · Francisco · Luis"
+
+DISEÑO:
+- Portada limpia, oscura y cinematográfica.
+- Ícono principal grande: fa-building-columns combinado visualmente con
+  fa-shield-halved.
+- Detrás del ícono puede aparecer una red de nodos o servidores estilizados.
+- No poner un párrafo.
+- Mantener el marco interior y el brillo de la portada original.
+
+ANIMACIÓN:
+- data-transition="zoom-in fade-out".
+- data-auto-animate si la plantilla actual lo soporta.
+- El escudo aparece primero y después el título.
+- Fondo con partículas muy lento.
+
+LO QUE DICE DAVID:
+"Buenos días. Nuestro caso plantea un SGSI para el Ministerio de Hacienda de
+Costa Rica, tomando como punto de partida un escenario de ataque ocurrido en
+abril de 2022. La propuesta se centra en tres frentes: proteger credenciales,
+fortalecer la autenticación y poder seguir operando y recuperarse ante un
+ransomware."
+
+NOTA PARA CODEX:
+- En <aside class="notes"> colocar exactamente esta idea, pero puede dividirse
+  en frases cortas.
+- No mostrar la fecha 2022 como un gran dato independiente; solo como contexto.
+
+----------------------------------------------------------------------
+SLIDE 02 — DEL INCIDENTE AL SGSI
+Expositor: DAVID
+Tiempo: 1 minuto
+----------------------------------------------------------------------
+TÍTULO:
+"El problema no termina en una contraseña"
+
+SUBTÍTULO:
+"El SGSI debe reducir el riesgo antes, durante y después del ataque."
+
+CONTENIDO VISIBLE:
+Crear una secuencia horizontal de 4 pasos con iconos:
+
+1. "Credencial filtrada"
+   Icono: fa-key / fa-user-lock
+2. "Acceso no autorizado"
+   Icono: fa-right-to-bracket / fa-user-secret
+3. "Movimiento lateral y cifrado"
+   Icono: fa-network-wired + fa-lock
+4. "Interrupción del servicio"
+   Icono: fa-server + fa-triangle-exclamation
+
+Abajo, una frase destacada:
+"Objetivo: prevenir el acceso indebido y mantener los servicios críticos."
+
+DISEÑO:
+- Pipeline horizontal con conectores brillantes.
+- Los pasos 1 y 2 en amarillo/rojo.
+- Los pasos 3 y 4 progresivamente en rojo.
+- El objetivo inferior en una tarjeta cian.
+
+ANIMACIÓN:
+- data-transition="slide".
+- Cada paso entra con fragment.
+- La línea que conecta los pasos se "dibuja" de izquierda a derecha.
+- Al revelar "interrupción", un pulso rojo muy corto, no constante.
+
+LO QUE DICE DAVID:
+"El enfoque del documento no es tratar el incidente como un problema aislado.
+Se consideran cuatro riesgos principales: ingreso con credenciales filtradas,
+movimiento lateral dentro de la red, cifrado de información y pérdida de
+respaldos. Por eso se propone un SGSI que no solo evita accesos indebidos, sino
+que también prepara a la institución para contener el ataque y recuperar sus
+servicios."
+
+IDEA QUE DEBE QUEDAR:
+El SGSI es una respuesta integral, no una sola herramienta.
+
+----------------------------------------------------------------------
+SLIDE 03 — QUÉ PROTEGE EL SGSI Y QUIÉN RESPONDE
+Expositor: DAVID
+Tiempo: 1 minuto 10 segundos
+----------------------------------------------------------------------
+TÍTULO:
+"Alcance y responsabilidades"
+
+DISEÑO PRINCIPAL:
+Dividir la escena en dos áreas.
+
+LADO IZQUIERDO — "Dentro del alcance"
+Mostrar 6 tarjetas pequeñas o un anillo visual:
+- Cuentas de funcionarios y proveedores
+- Accesos remotos
+- Equipos de trabajo
+- Servidores y redes
+- Bases de datos
+- Respaldos de servicios tributarios y aduaneros
+
+Iconos:
+fa-users, fa-globe, fa-laptop, fa-server, fa-database, fa-box-archive.
+
+LADO DERECHO — "Quién hace qué"
+4 filas:
+- Dirección -> aprueba política y recursos
+- Seguridad -> supervisa cumplimiento
+- TI -> implementa controles
+- Responsables de proceso -> validan continuidad y recuperación
+
+Abajo:
+"Revisión de accesos y alertas: mensual"
+"Pruebas de aislamiento y recuperación: semestrales"
+
+ANIMACIÓN:
+- data-transition="fade".
+- Primero aparece el alcance.
+- Después las responsabilidades, una por una.
+- Al final aparecen las dos frecuencias como pequeños chips.
+
+LO QUE DICE DAVID:
+"El alcance no se limita a los servidores. Incluye cuentas de funcionarios y
+proveedores, accesos remotos, equipos, redes, bases de datos y respaldos de los
+servicios tributarios y aduaneros. También se distribuyen responsabilidades:
+la dirección aprueba política y recursos, seguridad supervisa, TI implementa y
+cada proceso valida que pueda continuar y recuperarse. Además, los accesos y
+alertas se revisan mensualmente y las pruebas de aislamiento y recuperación se
+realizan de forma semestral."
+
+TRANSICIÓN A WALDER:
+"Con ese alcance definido, el primer control importante es evitar que una
+credencial comprometida vuelva a ser la puerta de entrada. Walder explica la
+primera fase."
+
+----------------------------------------------------------------------
+SLIDE 04 — FASE 1: POLÍTICA DE CONTRASEÑAS Y SECRETOS
+Expositor: WALDER
+Tiempo: 1 minuto 5 segundos
+----------------------------------------------------------------------
+ETIQUETA SUPERIOR:
+"FASE 1 · PREVENCIÓN"
+
+TÍTULO:
+"Contraseñas y secretos bajo control"
+
+CHIPS DE REFERENCIA:
+"A.5.15 · Control de acceso"
+"A.5.17 · Información de autenticación"
+
+CONTENIDO VISIBLE:
+Cuatro tarjetas:
+
+1. "Cuenta individual"
+   - Sin compartir credenciales
+   - Separar cuenta administrativa de cuenta diaria
+
+2. "15+ caracteres"
+   - Rechazar claves comunes o comprometidas
+   - Gestor institucional
+
+3. "MFA en accesos críticos"
+   - Acceso remoto
+   - Sistemas críticos
+
+4. "Secretos en bóveda"
+   - Llaves API y contraseñas de servicio
+   - Nunca en código, archivos públicos o bitácoras
+
+DISEÑO:
+- Grid 2x2 de glass cards.
+- Íconos: user, key, fingerprint, vault/lock.
+- A.5.15 y A.5.17 visibles, pequeños pero legibles.
+- No escribir la explicación completa de cada control en pantalla.
+
+ANIMACIÓN:
+- data-transition="convex".
+- Cada tarjeta entra con fragment.
+- La tarjeta "Secretos en bóveda" puede tener un efecto de cierre de candado.
+
+LO QUE DICE WALDER:
+"La primera fase se apoya en los controles A.5.15 y A.5.17. La propuesta exige
+cuentas individuales, prohíbe compartir o reutilizar contraseñas
+institucionales y separa las cuentas administrativas de las de uso diario.
+También establece un mínimo de 15 caracteres, gestor institucional y MFA en
+accesos remotos y sistemas críticos. Las llaves API y contraseñas de servicio
+deben guardarse en una bóveda y nunca quedar expuestas en código o archivos
+públicos."
+
+----------------------------------------------------------------------
+SLIDE 05 — CREDENCIALES COMPROMETIDAS
+Expositor: WALDER
+Tiempo: 55 segundos
+----------------------------------------------------------------------
+TÍTULO:
+"¿Qué pasa si una clave ya fue filtrada?"
+
+VISUAL:
+Crear un flujo de verificación tipo "security check":
+
+"Alta / cambio de contraseña"
+        ↓
+"Comparar con lista de claves comprometidas"
+        ↓
+¿COINCIDE?
+  NO -> "Aceptar"
+  SÍ -> "Rechazar y solicitar otra"
+
+A un costado, tarjeta "Si una cuenta aparece expuesta":
+- Revocar sesiones y tokens
+- Restablecer contraseña
+- Revisar el equipo por posible malware
+- Investigar la exposición
+
+FRASE PEQUEÑA IMPORTANTE:
+"No se envía la contraseña completa ni se solicitan claves en texto claro."
+
+DISEÑO:
+- Usar una escena tipo pipeline / terminal de seguridad.
+- El "SÍ" en rojo y el "NO" en verde.
+- Ícono fa-shield-virus o fa-magnifying-glass.
+
+ANIMACIÓN:
+- data-transition="slide".
+- El flujo se recorre con fragments.
+- El resultado "SÍ" puede mostrar una breve vibración/pulso.
+- Nada de animación continua.
+
+LO QUE DICE WALDER:
+"El documento propone verificar automáticamente las contraseñas nuevas contra
+una lista actualizada de claves comprometidas. La comparación puede hacerse
+con una base local o consultando prefijos de hash, sin enviar la contraseña
+completa. Si hay coincidencia, se rechaza. Si una cuenta institucional aparece
+expuesta, se revocan sesiones y tokens, se cambia la clave y se revisa el
+equipo. La aparición de un correo en una filtración inicia una investigación,
+pero no demuestra por sí sola que la contraseña actual esté comprometida."
+
+----------------------------------------------------------------------
+SLIDE 06 — CULTURA Y MODELO DE SANCIONES
+Expositor: WALDER
+Tiempo: 50 segundos
+----------------------------------------------------------------------
+TÍTULO:
+"La seguridad también depende de las personas"
+
+DISEÑO:
+Escena dividida en dos.
+
+IZQUIERDA — "Concientización"
+Mini timeline:
+- Inducción -> antes de habilitar acceso
+- Phishing y secretos -> trimestral
+- Taller admins/proveedores -> trimestral
+- Simulación de incidentes -> semestral
+
+DERECHA — "Respuesta proporcional"
+Tres niveles:
+1. Primera publicación accidental
+   -> advertencia + capacitación
+2. Reincidencia o desatención
+   -> amonestación + revisión de permisos
+3. Divulgación deliberada o grave
+   -> procedimiento disciplinario + valoración jurídica
+
+FRASE DE CIERRE:
+"Primero se contiene el riesgo; después se evalúa la responsabilidad."
+
+ANIMACIÓN:
+- data-transition="fade".
+- Timeline aparece primero.
+- Los niveles de sanción entran de menor a mayor.
+- Evitar un efecto visual punitivo exagerado.
+
+LO QUE DICE WALDER:
+"La propuesta no se queda en tecnología. Incluye inducción, capacitación
+trimestral y simulaciones semestrales. Si alguien publica una credencial,
+primero se bloquea y se contiene el incidente. Después Recursos Humanos y
+asesoría jurídica evalúan evidencia, intención y reincidencia. Las medidas son
+proporcionales y un reporte oportuno de buena fe no se considera por sí mismo
+una falta."
+
+TRANSICIÓN A FRANCISCO:
+"Una buena contraseña ayuda, pero una contraseña correcta tampoco debería ser
+suficiente por sí sola. La segunda fase refuerza la autenticación y el acceso."
+
+----------------------------------------------------------------------
+SLIDE 07 — FASE 2: MFA ADAPTATIVO
+Expositor: FRANCISCO
+Tiempo: 1 minuto 10 segundos
+----------------------------------------------------------------------
+ETIQUETA SUPERIOR:
+"FASE 2 · AUTENTICACIÓN SEGURA"
+
+TÍTULO:
+"No basta con conocer la contraseña"
+
+CHIPS:
+"A.8.20 · Seguridad de redes"
+"A.8.5 · Autenticación segura"
+"A.8.22 · Segregación de redes"
+
+VISUAL CENTRAL:
+Diagrama simple:
+Usuario / Proveedor
+      ↓
+Proveedor de identidad
+      ↓
+VPN o puerta de enlace
+      ↓
+Sistema institucional
+
+A la derecha:
+"Usuarios críticos"
+-> FIDO2 o passkeys
+"Otros usuarios"
+-> Aplicación autenticadora durante transición
+
+ABAJO:
+"MFA adaptativo = evaluar riesgo antes de permitir la sesión"
+
+SEÑALES DE RIESGO EN CHIPS:
+- Dispositivo
+- Ubicación aproximada
+- Horario
+- Rol
+- Actividad sospechosa
+
+ANIMACIÓN:
+- data-transition="convex".
+- Las capas del diagrama aparecen una a una.
+- Los chips de riesgo pueden encenderse progresivamente.
+- No animar los cinco al mismo tiempo.
+
+LO QUE DICE FRANCISCO:
+"La segunda fase centraliza la autenticación y evita el acceso remoto directo
+por escritorio remoto desde Internet. El ingreso pasa por una VPN o puerta de
+enlace integrada al proveedor de identidad. Para administradores y funciones
+críticas se proponen FIDO2 o passkeys; para otros usuarios, una aplicación
+autenticadora durante la transición. El MFA es adaptativo porque no solo pide
+un segundo factor: también considera dispositivo, ubicación aproximada,
+horario, rol y señales de actividad sospechosa."
+
+----------------------------------------------------------------------
+SLIDE 08 — ACCESO CONDICIONAL Y SEGMENTACIÓN
+Expositor: FRANCISCO
+Tiempo: 1 minuto 20 segundos
+----------------------------------------------------------------------
+TÍTULO:
+"Una contraseña válida no garantiza el acceso"
+
+DISEÑO PRINCIPAL:
+Panel tipo "motor de decisiones" con 5 situaciones.
+
+Mostrar solo una frase por situación:
+- Equipo autorizado + horario permitido -> "Permitir con MFA"
+- Dispositivo no registrado -> "Bloquear sistemas críticos"
+- IP fuera de Costa Rica sin autorización -> "Bloquear + alerta"
+- Fuera de horario -> "Bloquear salvo autorización"
+- Señales de compromiso -> "Revocar sesiones + investigar"
+
+Agregar un sexto chip pequeño:
+"Privilegio administrativo -> autenticación resistente al phishing + tiempo limitado"
+
+PARTE INFERIOR:
+Diagrama de segmentación con cinco zonas:
+[Usuarios] [Aplicaciones] [Bases de datos] [Administración] [Respaldos]
+
+Conectores solo entre zonas necesarias.
+Ícono firewall entre segmentos.
+
+FRASE IMPORTANTE:
+"La ubicación de una IP es una señal, no una prueba de identidad."
+
+ANIMACIÓN:
+- data-transition="slide".
+- Las reglas aparecen con fragments.
+- Después el diagrama de segmentación.
+- Usar animación de líneas para mostrar que no todo se comunica con todo.
+
+LO QUE DICE FRANCISCO:
+"El acceso condicional agrega reglas además de la contraseña. Por ejemplo, un
+dispositivo no registrado no debe entrar a sistemas críticos, una IP fuera de
+Costa Rica sin autorización se bloquea y genera alerta, y una cuenta con
+señales de compromiso pierde sus sesiones. La ubicación por sí sola no prueba
+la identidad, por eso se combina con MFA, estado del dispositivo y monitoreo.
+Además, se separan las redes de usuarios, aplicaciones, bases de datos,
+administración y respaldos para reducir el movimiento lateral."
+
+TRANSICIÓN A LUIS:
+"Si aun con estas medidas el atacante logra cifrar sistemas, entra la tercera
+fase: contener rápido el daño y recuperar de forma controlada."
+
+----------------------------------------------------------------------
+SLIDE 09 — FASE 3: AISLAMIENTO DE EMERGENCIA
+Expositor: LUIS
+Tiempo: 1 minuto 30 segundos
+----------------------------------------------------------------------
+ETIQUETA SUPERIOR:
+"FASE 3 · CONTENCIÓN"
+
+TÍTULO:
+"Ransomware: aislar antes de recuperar"
+
+VISUAL:
+Timeline vertical o pipeline de 5 pasos numerados:
+
+1. Detectar y registrar
+   - Hora, cuenta, equipos, IP, servicios afectados
+   - Abrir bitácora
+
+2. Bloquear identidad comprometida
+   - Bloquear cuenta
+   - Revocar sesiones/tokens
+   - Retirar privilegios
+
+3. Aislar equipos y subredes
+   - EDR
+   - Reglas de cuarentena
+   - Restringir SMB, RDP y administración remota
+
+4. Preservar evidencia y proteger respaldos
+   - Registros y alertas
+   - Copias sanas protegidas
+
+5. Eliminar causa y recuperar
+   - Reconstruir desde imágenes confiables
+   - Corregir vía de entrada
+   - Rotar secretos
+   - Restaurar gradualmente
+
+DISEÑO:
+- Fondo con una red de nodos.
+- Al avanzar cada paso, la zona comprometida cambia a rojo y se "aísla"
+  visualmente con un borde.
+- Evitar imágenes de ransomware genéricas; usar elementos vectoriales e iconos.
+
+ANIMACIÓN:
+- data-transition="zoom".
+- Timeline entra paso a paso.
+- En el paso 3, las conexiones hacia la red comprometida se cortan visualmente.
+- En el paso 5, el color cambia de rojo a verde gradualmente.
+
+LO QUE DICE LUIS:
+"El procedimiento se activa ante cifrado confirmado o evidencia de movimiento
+lateral desde una cuenta administrativa. Primero se registra el incidente y se
+abre una bitácora. Después se bloquea la identidad comprometida, se revocan
+sesiones y privilegios. Luego se aíslan equipos y subredes con EDR y reglas de
+cuarentena, restringiendo canales como SMB o RDP. También se preserva evidencia
+sin retrasar la contención y se protegen las copias sanas. Solo al final se
+reconstruye, se corrige la vía de entrada y se inicia una recuperación gradual."
+
+PUNTO QUE DEBE RESALTAR LUIS:
+"Cambiar solamente la contraseña no es suficiente si el directorio o el entorno
+ya fueron comprometidos."
+
+----------------------------------------------------------------------
+SLIDE 10 — OPERACIÓN EN ESTADO DEGRADADO
+Expositor: LUIS
+Tiempo: 1 minuto 5 segundos
+----------------------------------------------------------------------
+TÍTULO:
+"Seguir operando sin improvisar"
+
+VISUAL:
+Comparación tipo "Normal / Contingencia"
+
+NORMAL:
+- Base de datos principal
+- Procesamiento habitual
+
+CONTINGENCIA:
+- Punto alterno limpio o formularios controlados
+- Prioridad:
+  * recepción de trámites
+  * pagos
+  * operaciones aduaneras críticas
+- Posponer reportes y tareas no esenciales
+
+TARJETA ADICIONAL:
+"Cada operación debe conservar trazabilidad"
+Campos visuales:
+Folio único · Fecha · Cliente/contribuyente · Importe · Medio de pago · Responsable · Evidencia
+
+ABAJO:
+"Segunda persona verifica + cierre diario de conciliación"
+
+ANIMACIÓN:
+- data-transition="fade".
+- La parte "Normal" se oscurece.
+- Entra "Contingencia".
+- Los campos del folio aparecen como chips.
+
+LO QUE DICE LUIS:
+"Si la base principal queda cifrada, el documento plantea operar temporalmente
+desde un punto limpio o con formularios controlados. Se priorizan trámites,
+pagos y operaciones aduaneras críticas, mientras se posponen tareas que no
+afecten la continuidad inmediata. Cada operación conserva un folio único,
+fecha, identificación, importe, medio de pago, responsable y evidencia, y una
+segunda persona verifica la información. Así se evita perder trazabilidad o
+crear duplicados durante la emergencia."
+
+NOTA:
+- No afirmar que un formulario interno sustituye automáticamente un comprobante
+  fiscal. El documento dice lo contrario: debe usarse el mecanismo de
+  contingencia autorizado y, si no es posible emitirlo, gestionar su emisión
+  posterior conforme al procedimiento aplicable.
+
+----------------------------------------------------------------------
+SLIDE 11 — RESPALDOS Y RECUPERACIÓN
+Expositor: LUIS
+Tiempo: 1 minuto 15 segundos
+----------------------------------------------------------------------
+TÍTULO:
+"Un respaldo útil es el que puede recuperarse"
+
+VISUAL CENTRAL:
+Esquema de tres copias:
+1. Producción
+2. Medio distinto / fuera del sitio
+3. Copia desconectada o inmutable
+
+Añadir:
+- Credenciales diferentes de producción
+- MFA para administración de respaldos
+- Permisos restringidos
+
+DOS KPI GRANDES:
+"RTO propuesto: 8 h"
+"RPO propuesto: 1 h"
+
+Aclaración debajo:
+"Metas del ejercicio sujetas a validación mediante análisis de impacto y pruebas."
+
+PIPELINE INFERIOR:
+Red e identidad
+   -> Bases de datos
+   -> Aplicaciones críticas
+   -> Pruebas de transacciones
+   -> Conciliación de registros
+   -> Retorno normal
+
+FRASE DE ALERTA:
+"Replicar no es lo mismo que respaldar: la replicación también puede copiar el cifrado."
+
+ANIMACIÓN:
+- data-transition="convex".
+- Las tres copias aparecen primero.
+- RTO y RPO hacen count-up o reveal simple; NO inventar porcentajes.
+- El pipeline de recuperación aparece de izquierda a derecha.
+- El último paso se ilumina en verde.
+
+LO QUE DICE LUIS:
+"Los respaldos deben usar medios distintos, incluir una copia fuera del sitio y
+otra desconectada o inmutable, con credenciales diferentes de las de producción.
+La administración de respaldos también lleva MFA y permisos restringidos. Como
+metas del ejercicio se proponen un RTO de ocho horas y un RPO de una hora,
+sujetos a validación. La recuperación sigue un orden: red e identidad, bases de
+datos, aplicaciones críticas, pruebas, incorporación de registros de
+contingencia y conciliación antes de volver a la operación normal. Además, la
+replicación no sustituye un respaldo porque también puede replicar el cifrado."
+
+TRANSICIÓN A DAVID:
+"Con esto, las tres fases se conectan como una sola estrategia: prevenir,
+contener y recuperar."
+
+----------------------------------------------------------------------
+SLIDE 12 — CIERRE: DEFENSA EN CAPAS
+Expositor: DAVID
+Tiempo: 45 segundos
+----------------------------------------------------------------------
+TÍTULO:
+"El SGSI convierte un incidente en un proceso controlado"
+
+VISUAL:
+Tres grandes capas conectadas:
+
+1. PREVENIR
+   - Contraseñas y secretos
+   - Concientización
+
+2. CONTROLAR
+   - MFA adaptativo
+   - Acceso condicional
+   - Segmentación
+
+3. CONTENER Y RECUPERAR
+   - Aislamiento
+   - Continuidad
+   - Respaldos y restauración
+
+En el centro:
+"Servicios tributarios y aduaneros"
+
+FRASE FINAL GRANDE:
+"Seguridad no es impedir todo incidente; es reducir su impacto y recuperar con control."
+
+DISEÑO:
+- Diagrama circular o escudo de tres capas.
+- Cian -> amarillo -> rojo/verde según las etapas.
+- No saturar con texto.
+- Puede reutilizar una escena radial existente de la presentación anterior,
+  pero reemplazando completamente sus etiquetas y significados.
+
+ANIMACIÓN:
+- data-transition="fade".
+- Cada capa aparece con un fragment.
+- La frase final aparece al último.
+- Terminar con fondo estable, sin glitch.
+
+LO QUE DICE DAVID:
+"En conclusión, la propuesta funciona como defensa en capas. Primero reduce la
+probabilidad de entrada con mejores credenciales y cultura de seguridad.
+Después limita el acceso mediante MFA, reglas condicionales y segmentación. Y
+si el ataque ocurre, prioriza el aislamiento, la continuidad y una recuperación
+validada. La idea principal es que un SGSI no elimina todo riesgo, pero sí
+permite que la organización responda de forma ordenada y reduzca el impacto."
+
+CIERRE:
+"Muchas gracias."
+
+======================================================================
+5. TRANSICIONES ENTRE EXPOSITORES
+======================================================================
+
+DAVID -> WALDER:
+"Con ese alcance definido, el primer control importante es evitar que una
+credencial comprometida vuelva a ser la puerta de entrada. Walder explica la
+primera fase."
+
+WALDER -> FRANCISCO:
+"Una buena contraseña ayuda, pero una contraseña correcta tampoco debería ser
+suficiente por sí sola. La segunda fase refuerza la autenticación y el acceso."
+
+FRANCISCO -> LUIS:
+"Si aun con estas medidas el atacante logra cifrar sistemas, entra la tercera
+fase: contener rápido el daño y recuperar de forma controlada."
+
+LUIS -> DAVID:
+"Con esto, las tres fases se conectan como una sola estrategia: prevenir,
+controlar, contener y recuperar."
+
+======================================================================
+6. QUÉ DEBE VERSE Y QUÉ NO DEBE VERSE EN PANTALLA
+======================================================================
+
+SÍ DEBE VERSE:
+- Títulos cortos.
+- Palabras clave.
+- Controles ISO utilizados en el caso.
+- Diagramas de flujo.
+- Arquitectura simplificada.
+- Íconos claros.
+- RTO 8 h y RPO 1 h como metas propuestas del ejercicio.
+- Frecuencias reales del documento: mensual, trimestral, semestral cuando aplique.
+- Secuencia de contención y recuperación.
+
+NO DEBE VERSE:
+- Párrafos completos del documento.
+- Tablas copiadas literalmente.
+- Texto pequeño.
+- Explicaciones jurídicas largas.
+- Los casos de LogiTech.
+- Subcategorías NIST de LogiTech.
+- Números, porcentajes o estadísticas inventadas.
+- Información del tema anterior de la presentación web.
+- Imágenes decorativas que no aporten al concepto.
+
+======================================================================
+7. ICONOGRAFÍA SUGERIDA
+======================================================================
+
+Contexto / institución:
+- fa-building-columns
+- fa-landmark
+- fa-shield-halved
+
+Credenciales:
+- fa-key
+- fa-user-lock
+- fa-fingerprint
+- fa-vault / fa-lock
+
+Arquitectura:
+- fa-network-wired
+- fa-server
+- fa-database
+- fa-firewall si está disponible; si no, representar con CSS
+- fa-route
+- fa-globe
+
+Riesgo / incidente:
+- fa-triangle-exclamation
+- fa-user-secret
+- fa-bug
+- fa-lock
+- fa-shield-virus
+
+Respuesta:
+- fa-ban
+- fa-link-slash
+- fa-plug-circle-xmark
+- fa-clipboard-list
+
+Recuperación:
+- fa-box-archive
+- fa-rotate
+- fa-cloud-arrow-up
+- fa-circle-check
+
+Personas / cultura:
+- fa-users
+- fa-person-chalkboard
+- fa-user-shield
+
+======================================================================
+8. SUGERENCIAS TÉCNICAS PARA REUTILIZAR LA WEB ACTUAL
+======================================================================
+
+1. Mantener Reveal.js, controles, progreso y hash.
+2. Reducir la presentación de 53 escenas a 12 escenas nuevas.
+3. Reutilizar componentes genéricos existentes:
+   - portada
+   - glass cards
+   - timeline
+   - pipeline
+   - comparación
+   - KPI
+   - escena radial
+   - cierre
+4. Reemplazar por completo:
+   - contenido visible
+   - <aside class="notes">
+   - nombres de secciones antiguas
+   - iconos asociados al tema anterior
+5. Revisar todos los fragments:
+   - deben aparecer en el mismo orden en que se habla.
+6. Mantener animación ambiental, pero bajar su protagonismo en slides 09 a 11
+   para que el contenido crítico sea lo primero.
+7. Verificar que ninguna tarjeta exceda 720 px de alto lógico.
+8. Probar la presentación completa con teclado.
+9. Verificar que las dependencias carguen en el equipo que se utilizará el domingo.
+10. No añadir funciones interactivas nuevas si no aportan a la exposición.
+11. Limpiar handlers o componentes viejos que no correspondan a estas 12 escenas.
+12. Las notas del presentador deben quedar listas para usar con Reveal Notes.
+
+======================================================================
+9. CONTROL DE CALIDAD ANTES DE DARLA POR TERMINADA
+======================================================================
+
+[ ] La presentación contiene solo el caso del Ministerio de Hacienda.
+[ ] No aparecen los casos de LogiTech.
+[ ] Hay exactamente 12 slides principales.
+[ ] La duración ensayada queda debajo de 15 minutos.
+[ ] David, Walder, Francisco y Luis tienen una parte clara.
+[ ] Los controles A.5.15, A.5.17, A.8.20, A.8.5 y A.8.22 están bien escritos.
+[ ] Se explica que las contraseñas comprometidas se verifican sin enviar la clave completa.
+[ ] Se explica MFA adaptativo sin presentarlo como una sola tecnología.
+[ ] Se explica que la geolocalización/IP es una señal y no prueba de identidad.
+[ ] Se muestra segmentación de usuarios, aplicaciones, bases de datos,
+    administración y respaldos.
+[ ] El procedimiento de ransomware tiene los 5 pasos en orden.
+[ ] No se afirma que un formulario interno reemplaza un comprobante fiscal válido.
+[ ] RTO 8 h y RPO 1 h se presentan como metas propuestas y sujetas a validación.
+[ ] Se dice que la replicación no sustituye el respaldo.
+[ ] Todas las notas corresponden a lo que se ve en pantalla.
+[ ] No queda contenido del tema anterior.
+[ ] No hay overflow, texto cortado o fuentes demasiado pequeñas.
+[ ] El fondo y las animaciones no dificultan leer.
+[ ] Las transiciones son consistentes.
+[ ] La última slide deja una idea simple y memorable.
+
+======================================================================
+10. RESUMEN PARA LA CONSTRUCCIÓN
+======================================================================
+
+Narrativa completa de la exposición:
+
+INCIDENTE
+   ↓
+RIESGOS DEL SGSI
+   ↓
+ALCANCE Y RESPONSABILIDADES
+   ↓
+FASE 1 — CREDENCIALES Y SECRETOS
+   ↓
+FASE 2 — AUTENTICACIÓN Y ACCESO CONDICIONAL
+   ↓
+FASE 3 — AISLAMIENTO Y CONTENCIÓN
+   ↓
+CONTINUIDAD EN ESTADO DEGRADADO
+   ↓
+RESPALDOS Y RECUPERACIÓN
+   ↓
+CIERRE — DEFENSA EN CAPAS
+
+La presentación debe sentirse como una historia de seguridad:
+"¿Cómo entra el atacante?" -> "¿Cómo reducimos esa posibilidad?" ->
+"¿Cómo limitamos su movimiento?" -> "¿Qué hacemos si cifra sistemas?" ->
+"¿Cómo seguimos operando?" -> "¿Cómo recuperamos de forma segura?"
+
+FIN DEL GUION DETALLADO
